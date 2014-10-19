@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BabyTalk</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_live_card_service">Hello World LiveCard</string>
+    <string name="action_stop">Stop</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="menu_calendar">Days</string>
+    <string name="menu_sex">Male or Female</string>
+    <string name="dialog_menu_title">Are you a guy or a girl?</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="hint_login_username">Username</string>
+    <string name="hint_login_password">Password</string>
+    <string name="log_in_button">Login</string>
+    <string name="sign_up_text">Sign up</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="sign_up_email">Email</string>
+
+</resources>

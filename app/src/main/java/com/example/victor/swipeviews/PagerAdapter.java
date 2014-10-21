@@ -17,9 +17,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new FragmentOne();
+                return new FragmentDays();
             case 1:
-                return new FragmentTwo();
+                return new FragmentChat();
+
             default:
                 break;
         }

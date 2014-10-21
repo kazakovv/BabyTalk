@@ -11,7 +11,7 @@ import android.widget.Spinner;
 /**
  * Created by Victor on 13/10/2014.
  */
-public class FragmentTwo extends Fragment {
+public class FragmentChat extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

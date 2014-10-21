@@ -14,50 +14,77 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
+
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
     ViewPager pager;
     ActionBar actionbar;
     static Context context;
     static MenuItem fertilityCalandarIcon; //izplolzva se za reference v MaleOrFemaleDialog.
+    protected ParseUser currentUser;
 
-    @Override
+    public static final String TAG = Main.class.getSimpleName();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this,LoginActivity.class);
+
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
+        currentUser = ParseUser.getCurrentUser();
+        //ako niama lognat potrebitel preprashta kam log-in ekrana
+        if (currentUser == null) {
+            //prashta ni kam login screen
+            navigateToLogin();
+
+
+        } else {
+            // ako ima lognat potrebitel prodalzhava natatak
+            Log.i(TAG,"imame lognat potrebitel");
+
+        }
+
+            pager = (ViewPager) findViewById(R.id.pager);
+            PagerAdapter pAdapter = new PagerAdapter(getSupportFragmentManager());
+            pager.setAdapter(pAdapter);
+            actionbar = getActionBar();
+            actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
+            actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
+
+            pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    actionbar.setSelectedNavigationItem(position);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+
+
+    }
+
+    private void navigateToLogin() {
+        //preprashta kam login screen
+        Intent intent = new Intent(this, LoginActivity.class);
+
         //Celta na sledvashtite 2 reda e da ne moze da otidesh ot log-in ekrana
         //kam osnovnia ekran, ako natisnesh back butona
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //sazdavo zadacha
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); //iztriva vsichki predishni zadachi.
         startActivity(intent);
-
-        pager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter pAdapter = new PagerAdapter(getSupportFragmentManager());
-        pager.setAdapter(pAdapter);
-        actionbar = getActionBar();
-        actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionbar.addTab(actionbar.newTab().setText("Days").setTabListener(this));
-        actionbar.addTab(actionbar.newTab().setText("Chat").setTabListener(this));
-        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                actionbar.setSelectedNavigationItem(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
     }
 
     @Override
@@ -76,6 +103,11 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 sexDialog.show(getFragmentManager(),"Welcome");
                 Log.d("Vic","Sex menu");
                 return true;
+            case R.id.menu_logout:
+                currentUser.logOut();
+
+                //prashta kam login screen
+                navigateToLogin();
         }
 
         return super.onOptionsItemSelected(item);

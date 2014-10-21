@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ public class SignUpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS); //vazmoznost da pokazva spinner dokato misli
+
         setContentView(R.layout.activity_sign_up);
 
         //Vrazvame opciite za spinner
@@ -69,10 +72,14 @@ public class SignUpActivity extends Activity {
                     newUser.setEmail(email);
                     newUser.setPassword(password);
                     newUser.setUsername(userName);
+
+                    setProgressBarIndeterminate(true); //pokazva spiner che se sluchva neshto
                     newUser.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(ParseException e) {
-                       if(e==null) {
+                    setProgressBarIndeterminate(false); //izkluchva spiner che se sluchva neshto
+
+                            if(e==null) {
                            //User successfully created!.Switch to main screen.
                            Intent intent = new Intent(SignUpActivity.this,Main.class);
                            //dobaviame flagove, za da ne moze usera da se varne pak kam toya ekran

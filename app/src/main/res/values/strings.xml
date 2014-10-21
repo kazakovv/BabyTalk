@@ -19,7 +19,14 @@
     <string name="sign_up_text">Sign up</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="sign_up_email">Email</string>
-    <string name="sign_up_error_message">Please make sure you enter username, password and email address</string>
+    <string name="sign_up_error_message">Please make sure you enter username, password and email address!</string>
     <string name="sign_up_error_title">Oops!</string>
+    <string name="login_error_message">Please make sure you enter username and password!</string>
+    <string name="login_error_title">Oops!</string>
+    <string name="logout_menu_title">Logout</string>
+    <string name="tab_days_title">Days</string>
+    <string name="tab_chat_title">Chat</string>
+    <string name="tab_friends_title">Friends</string>
+
 
 </resources>

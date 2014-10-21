@@ -29,7 +29,7 @@ import java.util.zip.Inflater;
 /**
  * Created by Victor on 13/10/2014.
  */
-public class FragmentOne extends Fragment  {
+public class FragmentDays extends Fragment  {
     private TextView mainMessage;
     private TextView fertileMessage;
 

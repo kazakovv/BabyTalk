@@ -21,4 +21,8 @@
         android:id="@+id/menu_logout"
 
         />
+    <item
+        android:id="@+id/menu_edit_friends"
+        android:title="@string/menu_edit_friends"
+        />
     </menu>

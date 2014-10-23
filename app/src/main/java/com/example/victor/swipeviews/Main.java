@@ -53,6 +53,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
+            actionbar.addTab(actionbar.newTab().setText(R.string.tab_friends_title).setTabListener(this));
 
             pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -108,6 +109,10 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
                 //prashta kam login screen
                 navigateToLogin();
+            case R.id.menu_edit_friends:
+                Intent intent = new Intent(this,EditFriendsActivity.class);
+                startActivity(intent);
+
         }
 
         return super.onOptionsItemSelected(item);

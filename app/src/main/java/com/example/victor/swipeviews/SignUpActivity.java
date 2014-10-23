@@ -23,6 +23,7 @@ public class SignUpActivity extends Activity {
     protected EditText mPassword;
     protected EditText mEmail;
     protected Button mSignUpButton;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.activity_sign_up);
 
         //Vrazvame opciite za spinner
-        Spinner spinner = (Spinner) findViewById(R.id.signUpText);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinnerMaleOrFemale);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.SexOptions, android.R.layout.simple_spinner_item);
@@ -72,6 +73,8 @@ public class SignUpActivity extends Activity {
                     newUser.setEmail(email);
                     newUser.setPassword(password);
                     newUser.setUsername(userName);
+
+                    newUser.put(ParseConstants.KEY_MALEORFEMALE,spinner.getSelectedItem().toString());
 
                     setProgressBarIndeterminate(true); //pokazva spiner che se sluchva neshto
                     newUser.signUpInBackground(new SignUpCallback() {

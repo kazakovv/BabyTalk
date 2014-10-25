@@ -1,12 +1,17 @@
 package com.example.victor.swipeviews;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -14,9 +19,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
@@ -26,7 +36,133 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     static MenuItem fertilityCalandarIcon; //izplolzva se za reference v MaleOrFemaleDialog.
     protected ParseUser currentUser;
 
+    public static final int TAKE_PHOTO_REQUEST = 0;
+    public static final int TAKE_VIDEO_REQUEST = 1;
+    public static final int CHOOSE_PHOTO_REQUEST = 2;
+    public static final int CHOOSE_VIDEO_REQUEST =3;
+
+    public static final int MEDIA_TYPE_IMAGE = 4;
+    public static final int MEDIA_TYPE_VIDEO = 5;
+    protected Uri mMediaUri;
+
     public static final String TAG = Main.class.getSimpleName();
+
+    //onCLick listener za kamerata
+    protected DialogInterface.OnClickListener mCameraOptions =
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case 0: //take picture
+                            mMediaUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); //tova e metod, koito e definiran po-dolu
+                            if (mMediaUri == null) {
+                                Toast.makeText(Main.this, R.string.error_message_toast_external_storage, Toast.LENGTH_LONG).show();
+                            } else {
+                                takePicture();
+                            }
+                            break;
+                        case 1: //take video
+                            mMediaUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO); //tova e metod, koito e definiran po-dolu
+                            if (mMediaUri == null) {
+                                Toast.makeText(Main.this, R.string.error_message_toast_external_storage, Toast.LENGTH_LONG).show();
+                            } else {
+                                takeVideo();
+                            }
+                            break;
+                        case 2: //choose picture
+                            break;
+                        case 3: //choose video
+                            break;
+                    }
+                }
+                //tuk zapochvat vatreshni helper metodi za switch statementa
+
+                private Uri getOutputMediaFileUri(int mediaType) {
+
+
+
+                    //parvo triabva da se proveri dali ima external storage
+
+                    if (isExternalStorageAvailable()) {
+
+
+                        //sled tova vrashtame directoriata za pictures ili ia sazdavame
+
+                        //1.Get external storage directory
+                        String appName = Main.this.getString(R.string.app_name);
+
+                               File mediaStorageDirectory = new File(
+                                       Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                                       appName);
+
+                  //2.Create subdirectory if it does not exist
+                        //2.Create subdirectory if it does not exist
+                        if (! mediaStorageDirectory.exists()) {
+                            if (!mediaStorageDirectory.mkdirs()) {
+                                Log.e(TAG, "failed to create directory");
+                                return null;
+                            }
+                        }
+
+                        //3.Create file name
+                        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                        File mediaFile;
+                        if (mediaType == MEDIA_TYPE_IMAGE) {
+                            mediaFile = new File(mediaStorageDirectory.getPath() + File.separator +
+                                    "IMG_" + timeStamp + ".jpg");
+                        } else if (mediaType == MEDIA_TYPE_VIDEO) {
+                            mediaFile = new File(mediaStorageDirectory.getPath() + File.separator +
+                                    "MOV_" + timeStamp + ".mp4");
+                        } else {
+                            return null;
+                        }
+                        //4.Return the file's URI
+                        Log.d(TAG, "File path: " + Uri.fromFile(mediaFile));
+                        return Uri.fromFile(mediaFile);
+
+                    } else //ako niama external storage
+                        return null;
+
+                }
+
+
+                private boolean isExternalStorageAvailable() {
+                    String state = Environment.getExternalStorageState();
+                    if (state.equals(Environment.MEDIA_MOUNTED)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                private void takePicture() {
+                    Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mMediaUri);
+                    startActivityForResult(takePhotoIntent, TAKE_PHOTO_REQUEST);
+                }
+
+                private void takeVideo() {
+                    Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                    takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,10);
+                    takeVideoIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,0);
+                    takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mMediaUri);
+                    startActivityForResult(takeVideoIntent, TAKE_VIDEO_REQUEST);
+                }
+            };
+
+
+    @Override
+    //metod koito se vika kogato niakoi Intent varne rezultat
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK) {
+        //dobaviame snimkata ili videoto kam galeriata
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
+        mediaScanIntent.setData(mMediaUri);
+        sendBroadcast(mediaScanIntent); //broadcast intent
+        } else if (resultCode != RESULT_CANCELED) {
+        Toast.makeText(this,R.string.error_message_toast_intent_result,Toast.LENGTH_LONG).show();
+        }
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +232,15 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
 
         switch(item.getItemId()) {
+
+            case R.id.menu_camera:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.menu_camera_alertdialog_title);
+                builder.setItems(R.array.camera_choices, mCameraOptions);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
+
             case R.id.menu_fertility_calendar:
                 DialogFragment newDialog = new MenstrualCalendarDialog();
                 newDialog.show(getFragmentManager(),"Welcome");

@@ -2,7 +2,12 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+    <item
+        android:id="@+id/menu_camera"
+        android:title="@string/menu_camera"
+        android:icon="@drawable/ic_action_camera"
+        android:showAsAction="always"
+        />
     <item
         android:id="@+id/menu_fertility_calendar"
         android:title="@string/menu_calendar"
@@ -17,12 +22,13 @@
         android:showAsAction="always"
         />
     <item
+        android:id="@+id/menu_edit_friends"
+        android:title="@string/menu_edit_friends"
+        />
+    <item
         android:title="@string/logout_menu_title"
         android:id="@+id/menu_logout"
 
         />
-    <item
-        android:id="@+id/menu_edit_friends"
-        android:title="@string/menu_edit_friends"
-        />
+
     </menu>

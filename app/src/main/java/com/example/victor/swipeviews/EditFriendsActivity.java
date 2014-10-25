@@ -37,12 +37,7 @@ public class EditFriendsActivity extends ListActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.edit_friends, menu);
-        return true;
-    }
+
 
     @Override
     protected void onResume() {
@@ -50,14 +45,15 @@ public class EditFriendsActivity extends ListActivity {
         mCurrentUser = ParseUser.getCurrentUser();
         mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDSRELATION);
 
-        setProgressBarIndeterminate(true);
+        setProgressBarIndeterminateVisibility(true);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
         query.setLimit(1000);
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> parseUsers, ParseException e) {
-                setProgressBarIndeterminate(false);
+                setProgressBarIndeterminateVisibility(false);
+
 
                 if (e ==null) {
                //success
@@ -91,32 +87,30 @@ public class EditFriendsActivity extends ListActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
+        //markira kato priatel
         super.onListItemClick(l, v, position, id);
+
+
         if(getListView().isItemChecked(position)) {
-            mFriendsRelation.add(mUsers.get(position));
-            mCurrentUser.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e != null) {
-                        Log.i(TAG, e.getMessage());
-                    }
-                }
-            });
+         mFriendsRelation.add(mUsers.get(position)); //add locally
+
+        } else {  //ako e unchecked go iztrivam
+        mFriendsRelation.remove(mUsers.get(position)); //remove locally
+
         }
+        //save changes to Parse.com
+        mCurrentUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.i(TAG, e.getMessage());
+                }
+            }
+        });
     }
 
     private void addFriendsCheckMarks() {

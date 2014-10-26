@@ -25,6 +25,9 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,6 +47,8 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     public static final int MEDIA_TYPE_IMAGE = 4;
     public static final int MEDIA_TYPE_VIDEO = 5;
     protected Uri mMediaUri;
+
+    public static final int FILE_SIZE_LIMIT = 1024*1024*10; //1024*1024 = 1MB
 
     public static final String TAG = Main.class.getSimpleName();
 
@@ -70,32 +75,41 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                             }
                             break;
                         case 2: //choose picture
+                            Intent choosePhotoIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                            choosePhotoIntent.setType("image/*");
+                            startActivityForResult(choosePhotoIntent,CHOOSE_PHOTO_REQUEST);
                             break;
                         case 3: //choose video
+                            Intent chooseVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                            chooseVideoIntent.setType("video/*");
+                            Toast.makeText(Main.this,R.string.warning_max_video_size,Toast.LENGTH_LONG).show();
+                            startActivityForResult(chooseVideoIntent, CHOOSE_VIDEO_REQUEST);
                             break;
                     }
                 }
+
                 //tuk zapochvat vatreshni helper metodi za switch statementa
 
                 private Uri getOutputMediaFileUri(int mediaType) {
-
-
-
                     //parvo triabva da se proveri dali ima external storage
 
                     if (isExternalStorageAvailable()) {
 
-
                         //sled tova vrashtame directoriata za pictures ili ia sazdavame
-
                         //1.Get external storage directory
                         String appName = Main.this.getString(R.string.app_name);
+                        String environmentDirectory; //
+                        //ako snimame picture zapismave v papkata za kartiniki, ako ne v papkata za Movies
 
-                               File mediaStorageDirectory = new File(
-                                       Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                                       appName);
+                        if(mediaType == MEDIA_TYPE_IMAGE) {
+                             environmentDirectory = Environment.DIRECTORY_PICTURES;
+                        } else {
+                             environmentDirectory = Environment.DIRECTORY_MOVIES;
+                        }
+                        File mediaStorageDirectory = new File(
+                             Environment.getExternalStoragePublicDirectory(environmentDirectory),
+                             appName);
 
-                  //2.Create subdirectory if it does not exist
                         //2.Create subdirectory if it does not exist
                         if (! mediaStorageDirectory.exists()) {
                             if (!mediaStorageDirectory.mkdirs()) {
@@ -155,12 +169,47 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK) {
+            if(resultCode == CHOOSE_PHOTO_REQUEST || resultCode == CHOOSE_VIDEO_REQUEST) {
+                //tova e sluchaia v koito izbirame photo ili video ot galeriata
+                if(data == null) {
+                Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
+                } else {
+                mMediaUri = data.getData();
+                }
+                Log.i(TAG,"Media URI: " +mMediaUri);
+                if(requestCode == CHOOSE_VIDEO_REQUEST) {
+                //proveriavame dali file size > 10MB
+                    int fileSize = 0;
+                    InputStream inputStream = null;
+                    try {
+                        //potvariame izbranoto video i proveriavame kolko e goliamo
+                        inputStream = getContentResolver().openInputStream(mMediaUri);
+                        fileSize = inputStream.available();
+
+                    } catch (Exception e) {
+                        Toast.makeText(Main.this,R.string.error_video_cannot_be_added, Toast.LENGTH_LONG).show();
+                        return;
+                    } finally {
+                        try {
+                            inputStream.close();
+                            return;
+                        } catch (IOException e) {
+                           //blank
+                        }
+                    }
+                    if(fileSize > FILE_SIZE_LIMIT) {
+                        Toast.makeText(Main.this,R.string.error_file_too_large,Toast.LENGTH_LONG).show();
+                        return; //prekratiavame metoda tuk.
+                    }
+                }
+            }
         //dobaviame snimkata ili videoto kam galeriata
+        //tova e v sluchaite v koito sme snimali neshto
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
         mediaScanIntent.setData(mMediaUri);
         sendBroadcast(mediaScanIntent); //broadcast intent
         } else if (resultCode != RESULT_CANCELED) {
-        Toast.makeText(this,R.string.error_message_toast_intent_result,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
         }
     }
 

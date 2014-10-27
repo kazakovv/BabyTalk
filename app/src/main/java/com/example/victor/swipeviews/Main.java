@@ -135,6 +135,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                         return Uri.fromFile(mediaFile);
 
                     } else //ako niama external storage
+                        Log.d("Vic","no external strogage, mediaUri si null");
                         return null;
 
                 }
@@ -169,14 +170,14 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK) {
-            if(resultCode == CHOOSE_PHOTO_REQUEST || resultCode == CHOOSE_VIDEO_REQUEST) {
+            if(requestCode == CHOOSE_PHOTO_REQUEST || requestCode == CHOOSE_VIDEO_REQUEST) {
                 //tova e sluchaia v koito izbirame photo ili video ot galeriata
                 if(data == null) {
                 Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
                 } else {
                 mMediaUri = data.getData();
                 }
-                Log.i(TAG,"Media URI: " +mMediaUri);
+                Log.d("Vic","Media URI: " +mMediaUri);
                 if(requestCode == CHOOSE_VIDEO_REQUEST) {
                 //proveriavame dali file size > 10MB
                     int fileSize = 0;
@@ -192,7 +193,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                     } finally {
                         try {
                             inputStream.close();
-                            return;
+
                         } catch (IOException e) {
                            //blank
                         }
@@ -202,12 +203,30 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                         return; //prekratiavame metoda tuk.
                     }
                 }
+            } else {
+                //dobaviame snimkata ili videoto kam galeriata
+                //tova e v sluchaite v koito sme snimali neshto
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
+                mediaScanIntent.setData(mMediaUri);
+                sendBroadcast(mediaScanIntent); //broadcast intent
             }
-        //dobaviame snimkata ili videoto kam galeriata
-        //tova e v sluchaite v koito sme snimali neshto
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
-        mediaScanIntent.setData(mMediaUri);
-        sendBroadcast(mediaScanIntent); //broadcast intent
+            //startirame prozoreca, kadeto se izbira na kogo da pratish saobshtenieto.
+            Intent recipientsIntent = new Intent(this, ActivityRecipients.class);
+            recipientsIntent.setData(mMediaUri); //vrazvame mMediaUri kam intent
+
+            //Dobaviame tipa na file kam Intent
+            String fileType;
+            if(requestCode == TAKE_PHOTO_REQUEST || requestCode == CHOOSE_PHOTO_REQUEST) {
+
+            fileType = ParseConstants.TYPE_IMAGE;
+            } else {
+            fileType = ParseConstants.TYPE_VIDEO;
+            }
+            //dobaviame tipa na file kam Intent
+            recipientsIntent.putExtra(ParseConstants.KEY_FILE_TYPE,fileType);
+
+            startActivity(recipientsIntent);
+
         } else if (resultCode != RESULT_CANCELED) {
         Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
         }

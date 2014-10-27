@@ -39,11 +39,18 @@
     <string name="warning_max_video_size">The selected video must be less than 10MB.</string>
     <string name="error_video_cannot_be_added">There was a problem with the selected file.</string>
     <string name="error_file_too_large">The selected file is too large.</string>
+    <string name="title_activity_recipients">ActivityRecipients</string>
+    <string name="empty_recipients_message">Chose some friends first</string>
+    <string name="recipients_send_button_action_bar">Send</string>
+    <string name="error_sending_file_selected">There was an error with the file selected. Please select a different file.</string>
+    <string name="error_sending_file">The message was not sent. Please try again.</string>
+    <string name="message_successfully_sent">The message was sent successfully</string>
     <string-array name="camera_choices">
         <item>Take Picture</item>
         <item>Take Video</item>
         <item>Choose Picture</item>
         <item>Choose Video</item>
     </string-array>
+
 
 </resources>

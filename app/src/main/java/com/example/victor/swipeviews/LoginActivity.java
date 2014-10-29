@@ -55,7 +55,7 @@ public class LoginActivity extends Activity {
 
                 else {
                     //ako username i password ne sa prazni se logvame s parse
-                    setProgressBarIndeterminate(true); //pokazva spiner che se sluchva neshto
+                    setProgressBarIndeterminateVisibility(true); //pokazva spiner che se sluchva neshto
                     ParseUser.logInInBackground(userName,password, new LogInCallback() {
                         @Override
                         public void done(ParseUser parseUser, ParseException e) {

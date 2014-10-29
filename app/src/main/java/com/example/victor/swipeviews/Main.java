@@ -19,17 +19,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
@@ -46,6 +51,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
     public static final int MEDIA_TYPE_IMAGE = 4;
     public static final int MEDIA_TYPE_VIDEO = 5;
+
     protected Uri mMediaUri;
 
     public static final int FILE_SIZE_LIMIT = 1024*1024*10; //1024*1024 = 1MB
@@ -282,6 +288,8 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
 
     }
+
+
 
     private void navigateToLogin() {
         //preprashta kam login screen

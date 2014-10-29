@@ -45,6 +45,7 @@
     <string name="error_sending_file_selected">There was an error with the file selected. Please select a different file.</string>
     <string name="error_sending_file">The message was not sent. Please try again.</string>
     <string name="message_successfully_sent">The message was sent successfully</string>
+
     <string-array name="camera_choices">
         <item>Take Picture</item>
         <item>Take Video</item>
@@ -52,5 +53,6 @@
         <item>Choose Video</item>
     </string-array>
 
+    <string name="title_activity_view_image">ViewImageActivity</string>
 
 </resources>

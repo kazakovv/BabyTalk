@@ -63,11 +63,14 @@ public class LoginActivity extends Activity {
                             if (parseUser != null) {
                                 //logvame se uspeshno
 
+
                                 //User successfully created!.Switch to main screen.
                                 Intent intent = new Intent(LoginActivity.this,Main.class);
                                 //dobaviame flagove, za da ne moze usera da se varne pak kam toya ekran
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
                                 startActivity(intent);
 
                             } else {

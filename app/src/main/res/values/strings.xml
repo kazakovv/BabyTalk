@@ -10,8 +10,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="menu_calendar">Days</string>
-    <string name="menu_sex">Male or Female</string>
-    <string name="menu_edit_friends">Edit Friends</string>
+    <string name="menu_select_sex">Sex</string>
+    <string name="menu_edit_partner">Choose your partner</string>
     <string name="dialog_menu_title">Are you a guy or a girl?</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="hint_login_username">Username</string>
@@ -28,6 +28,7 @@
     <string name="tab_days_title">Days</string>
     <string name="tab_chat_title">Chat</string>
     <string name="tab_friends_title">Friends</string>
+    <string name="tab_partners_title">Partners</string>
     <string name="no_friends_added_message">Add friends to begin</string>
     <string name="no_messages">You have no new messages</string>
     <string name="title_activity_edit_friends">EditFriendsActivity</string>
@@ -45,14 +46,15 @@
     <string name="error_sending_file_selected">There was an error with the file selected. Please select a different file.</string>
     <string name="error_sending_file">The message was not sent. Please try again.</string>
     <string name="message_successfully_sent">The message was sent successfully</string>
-
+    <string name="title_activity_view_image">ViewImageActivity</string>
+    <string name="main_message_female">Your upcoming fertile days are:</string>
+    <string name="main_message_male">Your partner\'s upcoming fertile days are:</string>
+    <string name="messaged_successfully_saved_to_server">Your selection was saved</string>
+    <string name="messaged_unsuccessfully_saved_to_server">Unfortunately, there was a server error and your selection was not saved. Please try again later.</string>
     <string-array name="camera_choices">
         <item>Take Picture</item>
         <item>Take Video</item>
         <item>Choose Picture</item>
         <item>Choose Video</item>
     </string-array>
-
-    <string name="title_activity_view_image">ViewImageActivity</string>
-
 </resources>

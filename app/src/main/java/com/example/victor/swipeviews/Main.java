@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -43,6 +44,9 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     static Context context;
     static MenuItem fertilityCalandarIcon; //izplolzva se za reference v MaleOrFemaleDialog.
     protected ParseUser currentUser;
+
+    protected String MaleOrFemale;
+    TextView mainMessage;
 
     public static final int TAKE_PHOTO_REQUEST = 0;
     public static final int TAKE_VIDEO_REQUEST = 1;
@@ -245,18 +249,19 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         setContentView(R.layout.activity_main);
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
-
+        //vrazvame osnovnotosaobshtenie
         currentUser = ParseUser.getCurrentUser();
         //ako niama lognat potrebitel preprashta kam log-in ekrana
         if (currentUser == null) {
             //prashta ni kam login screen
             navigateToLogin();
-
-
         } else {
             // ako ima lognat potrebitel prodalzhava natatak
             Log.i(TAG,"imame lognat potrebitel");
+                Intent intent = getIntent();
 
+            //proveriavame dali e maz ili zhena
+            MaleOrFemale = currentUser.getString(ParseConstants.KEY_MALEORFEMALE);
         }
 
             pager = (ViewPager) findViewById(R.id.pager);
@@ -267,7 +272,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_friends_title).setTabListener(this));
-
+            actionbar.addTab(actionbar.newTab().setText(R.string.tab_partners_title).setTabListener(this));
             pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                 @Override
@@ -291,7 +296,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
 
 
-    private void navigateToLogin() {
+    protected void navigateToLogin() {
         //preprashta kam login screen
         Intent intent = new Intent(this, LoginActivity.class);
 
@@ -333,9 +338,12 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
                 //prashta kam login screen
                 navigateToLogin();
+                return true;
+
             case R.id.menu_edit_friends:
                 Intent intent = new Intent(this,EditFriendsActivity.class);
                 startActivity(intent);
+                return true;
 
         }
 
@@ -346,12 +354,25 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_menu, menu);
-
+        //vrazvam osnovnoto saobshtenie( your fertile days are/your partner fertile days are)
+        mainMessage = (TextView) findViewById(R.id.mainMessage);
         //zadava dali iconkata na kalendara e enabled ili ne
         fertilityCalandarIcon =  menu.findItem(R.id.menu_fertility_calendar);
+        //proveriavame dali current user ne e null.
+        if(currentUser != null) {
+            if (MaleOrFemale.equals(ParseConstants.SEX_FEMALE)) {
+                fertilityCalandarIcon.setVisible(true);
+                mainMessage.setText(R.string.main_message_female);
 
-        SharedPreferences savedSettings = getSharedPreferences("MYPREFS",0);
-        fertilityCalandarIcon.setVisible(savedSettings.getBoolean("FertilityCalendar", true));
+            } else {
+                //ako ne e zhena triabva da e maz
+                fertilityCalandarIcon.setVisible(false);
+                mainMessage.setText(R.string.main_message_male);
+
+            }
+        }
+        //SharedPreferences savedSettings = getSharedPreferences("MYPREFS",0);
+        //fertilityCalandarIcon.setVisible(savedSettings.getBoolean("FertilityCalendar", true));
 
         return super.onCreateOptionsMenu(menu);
     }

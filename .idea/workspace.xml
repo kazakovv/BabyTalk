@@ -45,10 +45,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.victor.swipeviews" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79458b40-b9b7-4834-b5ef-14c634051c50" name="Default" comment="Sending pushes but not receiving them">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/CustomReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/BabyTalkApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/BabyTalkApplication.java" />
+    <list default="true" id="79458b40-b9b7-4834-b5ef-14c634051c50" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SwipeViews.iws" />
@@ -1730,7 +1727,11 @@
       <created>1415305605402</created>
       <updated>1415305605402</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Sending pushes but not receiving them">
+      <created>1415450202035</created>
+      <updated>1415450202035</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">

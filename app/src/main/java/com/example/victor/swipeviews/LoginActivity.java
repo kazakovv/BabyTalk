@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 
 public class LoginActivity extends Activity {
@@ -62,6 +60,7 @@ public class LoginActivity extends Activity {
                             //setProgressBarIndeterminate(false);//izkluchvame spinnera
                             if (parseUser != null) {
                                 //logvame se uspeshno
+
 
 
                                 //User successfully created!.Switch to main screen.

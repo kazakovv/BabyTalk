@@ -19,15 +19,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.ParseAnalytics;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import com.parse.ParseInstallation;
+
 import com.parse.ParseUser;
 
 import java.io.File;
@@ -35,7 +32,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
@@ -258,10 +254,15 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         } else {
             // ako ima lognat potrebitel prodalzhava natatak
             Log.i(TAG,"imame lognat potrebitel");
-                Intent intent = getIntent();
 
             //proveriavame dali e maz ili zhena
             MaleOrFemale = currentUser.getString(ParseConstants.KEY_MALEORFEMALE);
+
+            //instalaciata vrazva device sas application. Tova se pravi za da mozhe da se poluchavat push notifications
+            //posle moga da napisha query, koiato da tarsi po parseuser ustroistvoto
+            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+            installation.put(ParseConstants.KEY_USER, ParseUser.getCurrentUser());
+            installation.saveInBackground();
         }
 
             pager = (ViewPager) findViewById(R.id.pager);

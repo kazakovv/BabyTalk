@@ -52,7 +52,12 @@
     <string name="messaged_successfully_saved_to_server">Your selection was saved</string>
     <string name="messaged_unsuccessfully_saved_to_server">Unfortunately, there was a server error and your selection was not saved. Please try again later.</string>
     <string name="send_a_kiss_message">sent you a kiss</string>
+    <string name="send_a_message_message">sent you a message</string>
     <string name="title_receive_a_kiss_message">You received a kiss</string>
+    <string name="title_receive_a_message_message">You received a message</string>
+    <string name="title_update_calendar_notification">updated her private calendar</string>
+    <string name="button_send_kiss">Send a kiss</string>
+    <string name="button_send_message">Send a message</string>
     <string-array name="camera_choices">
         <item>Take Picture</item>
         <item>Take Video</item>

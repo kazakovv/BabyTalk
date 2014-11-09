@@ -51,6 +51,8 @@
     <string name="main_message_male">Your partner\'s upcoming fertile days are:</string>
     <string name="messaged_successfully_saved_to_server">Your selection was saved</string>
     <string name="messaged_unsuccessfully_saved_to_server">Unfortunately, there was a server error and your selection was not saved. Please try again later.</string>
+    <string name="send_a_kiss_message">sent you a kiss</string>
+    <string name="title_receive_a_kiss_message">You received a kiss</string>
     <string-array name="camera_choices">
         <item>Take Picture</item>
         <item>Take Video</item>

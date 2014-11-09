@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import com.parse.ParsePushBroadcastReceiver;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.Iterator;
 
 
 /**
@@ -29,9 +32,17 @@ public class CustomReceiver extends ParsePushBroadcastReceiver {
             Log.d("Vic", "onReceive started but intent is empty");
         } else {
             // izvlichame infoto
+            try {
+                JSONObject json = new JSONObject(intent.getExtras().getString("com.parse.Data"));
+                    String message = (String) json.get(ParseConstants.KEY_PUSH_MESSAGE);
+                    String title = context.getString(R.string.title_receive_a_kiss_message);
 
-                String message = intent.getExtras().getString(ParseConstants.KEY_ALERT);
-                showNotification(context,"You got a kiss", message);
+                    showNotification(context, title, message);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
 
         }

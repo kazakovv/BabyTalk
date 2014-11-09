@@ -31,6 +31,7 @@ public final class ParseConstants {
     public static final String KEY_USER = "user";
     public static final String KEY_ALERT = "alert";
     public static final String KEY_ACTION = "action";
+    public static final String KEY_PUSH_MESSAGE = "messageToSend";
 
     public static final String TYPE_PUSH_KISS = "kiss";
     public static final String TYPE_PUSH_CALENDAR= "calendar";

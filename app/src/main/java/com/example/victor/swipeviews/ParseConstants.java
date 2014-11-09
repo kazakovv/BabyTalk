@@ -25,4 +25,14 @@ public final class ParseConstants {
     public static final String SEX_MALE = "Male";
     public static final String SEX_FEMALE = "Female";
 
+
+    //Keys prase pusheshes
+
+    public static final String KEY_USER = "user";
+    public static final String KEY_ALERT = "alert";
+    public static final String KEY_ACTION = "action";
+
+    public static final String TYPE_PUSH_KISS = "kiss";
+    public static final String TYPE_PUSH_CALENDAR= "calendar";
+    public static final String TYPE_PUSH_MESSAGE="message";
 }

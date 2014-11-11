@@ -325,6 +325,10 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                         getString(R.string.send_a_kiss_message); //niakoi ti izprati celuvka
                 pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
                 return true;
+            case R.id.menu_send_message:
+                 Intent intent = new Intent(this,SendMessage.class);
+                startActivity(intent);
+                return true;
 
             case R.id.menu_camera:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -353,8 +357,8 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 return true;
 
             case R.id.menu_edit_friends:
-                Intent intent = new Intent(this,EditFriendsActivity.class);
-                startActivity(intent);
+                Intent intentSendMessage = new Intent(this,EditFriendsActivity.class);
+                startActivity(intentSendMessage);
                 return true;
 
         }

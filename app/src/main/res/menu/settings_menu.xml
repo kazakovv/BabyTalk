@@ -4,9 +4,16 @@
    <item
        android:id="@+id/menu_send_kiss"
        android:title="@string/menu_send_a_kiss"
-       android:icon="@drawable/ic_action_chat"
+       android:icon="@drawable/ic_action_person"
        android:showAsAction="always"
        />
+
+    <item
+        android:id="@+id/menu_send_message"
+        android:title="@string/menu_send_message"
+        android:icon="@drawable/ic_action_chat"
+        android:showAsAction="always"
+        />
 
     <item
         android:id="@+id/menu_camera"

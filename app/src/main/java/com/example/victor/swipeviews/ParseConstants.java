@@ -1,5 +1,12 @@
 package com.example.victor.swipeviews;
 
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import org.json.JSONObject;
+
 /**
  * Created by Victor on 23/10/2014.
  */
@@ -36,4 +43,7 @@ public final class ParseConstants {
     public static final String TYPE_PUSH_KISS = "kiss";
     public static final String TYPE_PUSH_CALENDAR= "calendar";
     public static final String TYPE_PUSH_MESSAGE="message";
+
+
+
 }

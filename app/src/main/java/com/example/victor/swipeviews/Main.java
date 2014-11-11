@@ -244,10 +244,12 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         setContentView(R.layout.activity_main);
 
+
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
         //vrazvame osnovnotosaobshtenie
         currentUser = ParseUser.getCurrentUser();
         //ako niama lognat potrebitel preprashta kam log-in ekrana
+
         if (currentUser == null) {
             //prashta ni kam login screen
             navigateToLogin();
@@ -314,6 +316,15 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
 
         switch(item.getItemId()) {
+            case R.id.menu_send_kiss:
+                //SendPushMessages sadarza metoda za izprashtane na push
+                SendPushMessages pushM = new SendPushMessages();
+
+                ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
+                String message = ParseUser.getCurrentUser().getUsername() + " " +
+                        getString(R.string.send_a_kiss_message); //niakoi ti izprati celuvka
+                pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
+                return true;
 
             case R.id.menu_camera:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -321,7 +332,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 builder.setItems(R.array.camera_choices, mCameraOptions);
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                break;
+                return true;
 
             case R.id.menu_fertility_calendar:
                 DialogFragment newDialog = new MenstrualCalendarDialog();

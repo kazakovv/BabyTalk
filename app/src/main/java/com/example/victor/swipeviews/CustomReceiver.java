@@ -1,5 +1,6 @@
 package com.example.victor.swipeviews;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.parse.ParsePushBroadcastReceiver;
 
@@ -40,7 +42,7 @@ public class CustomReceiver extends ParsePushBroadcastReceiver {
                         messageType=ParseConstants.TYPE_PUSH_KISS;
                     } else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_MESSAGE)) {
                         title = context.getString(R.string.title_receive_a_message_message);
-                        messageType=ParseConstants.TYPE_PUSH_MESSAGE;
+
                     }  else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_CALENDAR)) {
                         //tr da se dobavi imeto na choveka deto si e updatenal calendara
                         title = context.getString(R.string.title_update_calendar_notification);
@@ -83,5 +85,4 @@ public class CustomReceiver extends ParsePushBroadcastReceiver {
     }
 
 
-
-    }
+}

@@ -8,7 +8,8 @@ import com.parse.ParseUser;
 import org.json.JSONObject;
 
 /**
- * Created by Victor on 11/11/2014.
+ * Sadarzha edin metod za izprashtane na push notifications, koito moze da se izpolzva navsiakade
+ * v programata.
  */
 public class SendPushMessages {
     protected void sendPush(ParseUser recepient, String senderMessageText, String typeOfMessage,

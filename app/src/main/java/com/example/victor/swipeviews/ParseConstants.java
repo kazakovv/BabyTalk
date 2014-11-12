@@ -23,11 +23,12 @@ public final class ParseConstants {
     public static final String KEY_SENDER_ID = "senderID";
     public static final String KEY_SENDER_NAME = "senderName";
     public static final String KEY_FILE = "file";
-    public static final String KEY_FILE_TYPE = "fileType";
     public static final String KEY_CREATEDAT = "createdAt";
+    public static final String KEY_FILE_TYPE = "fileType";
 
     public static final String TYPE_IMAGE = "image";
     public static final String TYPE_VIDEO = "video";
+    public static final String TYPE_TEXTMESSAGE = "textMessage";
 
     public static final String SEX_MALE = "Male";
     public static final String SEX_FEMALE = "Female";

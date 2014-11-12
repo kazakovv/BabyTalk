@@ -30,7 +30,6 @@
     <string name="tab_days_title">Days</string>
     <string name="tab_chat_title">Chat</string>
     <string name="tab_friends_title">Friends</string>
-    <string name="tab_partners_title">Partners</string>
     <string name="no_friends_added_message">Add friends to begin</string>
     <string name="no_messages">You have no new messages</string>
     <string name="title_activity_edit_friends">EditFriendsActivity</string>

@@ -23,14 +23,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseInstallation;
 
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -244,7 +247,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         setContentView(R.layout.activity_main);
 
-
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
         //vrazvame osnovnotosaobshtenie
         currentUser = ParseUser.getCurrentUser();
@@ -265,6 +267,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             ParseInstallation installation = ParseInstallation.getCurrentInstallation();
             installation.put(ParseConstants.KEY_USER, ParseUser.getCurrentUser());
             installation.saveInBackground();
+
         }
 
             pager = (ViewPager) findViewById(R.id.pager);
@@ -275,7 +278,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_friends_title).setTabListener(this));
-            actionbar.addTab(actionbar.newTab().setText(R.string.tab_partners_title).setTabListener(this));
             pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                 @Override
@@ -318,7 +320,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         switch(item.getItemId()) {
             case R.id.menu_send_kiss:
                 //SendPushMessages sadarza metoda za izprashtane na push
-                SendPushMessages pushM = new SendPushMessages();
+                SendParsePushMessagesAndParseObjects pushM = new SendParsePushMessagesAndParseObjects();
 
                 ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
                 String message = ParseUser.getCurrentUser().getUsername() + " " +
@@ -326,7 +328,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
                 return true;
             case R.id.menu_send_message:
-                 Intent intent = new Intent(this,SendMessage.class);
+                Intent intent = new Intent(this,SendMessage.class);
                 startActivity(intent);
                 return true;
 

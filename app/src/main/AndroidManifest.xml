@@ -72,6 +72,11 @@
                 android:value="com.example.victor.swipeviews.Main" />
         </activity>
 
+        <activity
+            android:name="com.example.victor.swipeviews.SendMessage"
+            android:label="@string/title_activity_send_message"
+            android:parentActivityName="com.example.victor.swipeviews.Main" >
+        </activity>
 <!--          Push notification parse -->
 
         <service android:name="com.parse.PushService" />
@@ -107,10 +112,7 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name="com.example.victor.swipeviews.SendMessage"
-            android:label="@string/title_activity_send_message" >
-        </activity>
+
     </application>
 
 </manifest>

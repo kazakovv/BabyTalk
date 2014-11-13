@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -170,6 +174,7 @@ public class SendMessage extends Activity {
                     Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
                 } else {
                     mMediaUri = data.getData();
+
                 }
                 Log.d("Vic","Media URI: " +mMediaUri);
                 if(requestCode == CHOOSE_VIDEO_REQUEST) {
@@ -204,6 +209,11 @@ public class SendMessage extends Activity {
                 mediaScanIntent.setData(mMediaUri);
                 sendBroadcast(mediaScanIntent); //broadcast intent
             }
+
+            /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
             //startirame prozoreca, kadeto se izbira na kogo da pratish saobshtenieto.
 
             Intent recipientsIntent = new Intent(this, ActivityRecipients.class);
@@ -221,11 +231,42 @@ public class SendMessage extends Activity {
             recipientsIntent.putExtra(ParseConstants.KEY_FILE_TYPE,fileType);
 
             startActivity(recipientsIntent);
+            */
+
+            //create a thumbnail preview of the image/movie that was selected
+
+            Bitmap bitmap = null;
+            Bitmap thumbnail = null;
+            if(requestCode == CHOOSE_PHOTO_REQUEST || requestCode == TAKE_PHOTO_REQUEST) {
+
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), mMediaUri);
+            } catch (Exception e) {
+                //handle exception here
+                Toast.makeText(SendMessage.this,R.string.error_loading_thumbnail, Toast.LENGTH_LONG).show();
+                Log.d("Vic","Error loading thumbnail" + e.toString());
+            }
+            int initialWidth = bitmap.getWidth();
+            int initalHeight = bitmap.getHeight();
+            float ratio = initialWidth/initalHeight;
+            int newWidth = (int) (800*ratio);
+            int newHeight = 800;
+
+            thumbnail = ThumbnailUtils.extractThumbnail(bitmap, newWidth, newHeight);
+            } else { //ako ne e photo triabva da e video
+                thumbnail = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(
+                        mMediaUri.getPath(), MediaStore.Images.Thumbnails.MINI_KIND), 800, 500);
+            }
+            ImageView imageViewForThumbnailPreview = (ImageView) findViewById(R.id.thumbnailPreview);
+            imageViewForThumbnailPreview.setImageBitmap(thumbnail);
 
         } else if (resultCode != RESULT_CANCELED) {
             Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
         }
     }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

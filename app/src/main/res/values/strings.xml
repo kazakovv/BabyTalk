@@ -46,6 +46,7 @@
     <string name="recipients_send_button_action_bar">Send</string>
     <string name="error_sending_file_selected">There was an error with the file selected. Please select a different file.</string>
     <string name="error_sending_file">The message was not sent. Please try again.</string>
+    <string name="error_loading_thumbnail">Error loading the thumbnail image</string>
     <string name="message_successfully_sent">The message was sent successfully</string>
     <string name="title_activity_view_image">ViewImageActivity</string>
     <string name="main_message_female">Your upcoming fertile days are:</string>

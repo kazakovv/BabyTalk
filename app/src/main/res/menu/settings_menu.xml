@@ -15,13 +15,6 @@
         android:showAsAction="always"
         />
 
-    <item
-        android:id="@+id/menu_camera"
-        android:title="@string/menu_camera"
-        android:icon="@drawable/ic_action_camera"
-        android:showAsAction="always"
-        />
-
 
     <item
 

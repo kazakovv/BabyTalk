@@ -2,7 +2,6 @@ package com.example.victor.swipeviews;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -46,10 +44,10 @@ public class SendMessage extends Activity {
 
     public static final int FILE_SIZE_LIMIT = 1024*1024*10; //1024*1024 = 1MB
 
-    public static final String TAG = Main.class.getSimpleName();
+    public static final String TAG = SendMessage.class.getSimpleName();
 
     //onCLick listener za kamerata
-    protected DialogInterface.OnClickListener mCameraOptions =
+    protected DialogInterface.OnClickListener mUploadPictureOrVideo =
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -207,6 +205,7 @@ public class SendMessage extends Activity {
                 sendBroadcast(mediaScanIntent); //broadcast intent
             }
             //startirame prozoreca, kadeto se izbira na kogo da pratish saobshtenieto.
+
             Intent recipientsIntent = new Intent(this, ActivityRecipients.class);
             recipientsIntent.setData(mMediaUri); //vrazvame mMediaUri kam intent
 
@@ -238,7 +237,7 @@ public class SendMessage extends Activity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SendMessage.this);
                 builder.setTitle(R.string.menu_camera_alertdialog_title);
-                builder.setItems(R.array.camera_choices, mCameraOptions);
+                builder.setItems(R.array.camera_choices, mUploadPictureOrVideo);
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

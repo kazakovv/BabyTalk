@@ -20,8 +20,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return new FragmentDays();
             case 1:
                 return new FragmentChat();
-            case 2:
-                return new FragmentFriends();
             default:
                 break;
         }
@@ -33,6 +31,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 }

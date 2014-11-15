@@ -86,7 +86,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
             actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
-            actionbar.addTab(actionbar.newTab().setText(R.string.tab_friends_title).setTabListener(this));
             pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                 @Override

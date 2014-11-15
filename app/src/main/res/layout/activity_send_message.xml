@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/messageToSend"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/sendTo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -31,5 +31,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="46dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_message_to"
+        android:id="@+id/sendTo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

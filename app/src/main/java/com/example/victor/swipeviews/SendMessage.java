@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
@@ -34,7 +33,7 @@ import java.util.Date;
 public class SendMessage extends Activity {
     EditText messageToSend;
     ImageView mUploadMedia;
-
+    TextView mSendMessageTo;
 
     public static final int TAKE_PHOTO_REQUEST = 0;
     public static final int TAKE_VIDEO_REQUEST = 1;
@@ -281,6 +280,15 @@ public class SendMessage extends Activity {
                 builder.setItems(R.array.camera_choices, mUploadPictureOrVideo);
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
+
+        mSendMessageTo = (TextView) findViewById(R.id.sendTo);
+        mSendMessageTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SendMessage.this, SendTo.class);
+                startActivity(intent);
             }
         });
     }

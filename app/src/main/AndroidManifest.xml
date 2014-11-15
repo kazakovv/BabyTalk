@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<!--             Push notification parse Permissions -->
+    <!-- Push notification parse Permissions -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -71,13 +71,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.victor.swipeviews.Main" />
         </activity>
-
         <activity
             android:name="com.example.victor.swipeviews.SendMessage"
             android:label="@string/title_activity_send_message"
             android:parentActivityName="com.example.victor.swipeviews.Main" >
         </activity>
-<!--          Push notification parse -->
+
+        <activity
+            android:name="com.example.victor.swipeviews.SendTo"
+            android:label="@string/title_activity_send_to"
+            android:parentActivityName="com.example.victor.swipeviews.SendMessage" >
+        </activity>
+
+        <!-- Push notification parse -->
 
         <service android:name="com.parse.PushService" />
 
@@ -93,7 +99,7 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-<!--                   IMPORTANT: Change "com.parse.tutorials.pushnotifications" to match your app's package name. -->
+                <!-- IMPORTANT: Change "com.parse.tutorials.pushnotifications" to match your app's package name. -->
                 <category android:name="com.example.victor.swipeviews" />
             </intent-filter>
         </receiver>

@@ -100,6 +100,8 @@ public class FragmentChat extends ListFragment {
 
         ParseObject message = mMessages.get(position);
         String messageType = (String) message.get(ParseConstants.KEY_FILE_TYPE);
+        String loveMessage = (String) message.get(ParseConstants.KEY_LOVE_MESSAGE);
+
         ParseFile file = message.getParseFile(ParseConstants.KEY_FILE);
         Uri fileUri = Uri.parse(file.getUrl());
 
@@ -107,6 +109,7 @@ public class FragmentChat extends ListFragment {
         //view image
             Intent intent = new Intent(getActivity(),ViewImageActivity.class);
             intent.setData(fileUri);
+            intent.putExtra(ParseConstants.KEY_LOVE_MESSAGE, loveMessage);
             startActivity(intent);
         } else {
         //view video

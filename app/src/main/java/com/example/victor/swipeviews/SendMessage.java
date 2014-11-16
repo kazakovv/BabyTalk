@@ -368,14 +368,14 @@ public class SendMessage extends Activity {
             String senderMessageText = ParseUser.getCurrentUser().getUsername() + " " +
                     getString(R.string.send_a_message_message); //niakoi ti izprati sabshtenie
             String loveMessage = messageToSend.getText().toString();
-            pushM.sendPush(parseObjectIDs, senderMessageText,
-                    ParseConstants.TYPE_PUSH_MESSAGE,loveMessage);
+            pushM.sendPush(parseObjectIDs, parseUserNames, senderMessageText,
+                    ParseConstants.TYPE_PUSH_MESSAGE,loveMessage, SendMessage.this);
 
             //Izprashtam Parse message
             SendParsePushMessagesAndParseObjects sendParse =
                     new SendParsePushMessagesAndParseObjects();
             sendParse.send(ParseUser.getCurrentUser(),parseObjectIDs,
-                    ParseConstants.TYPE_TEXTMESSAGE,loveMessage,mMediaUri, this);
+                    ParseConstants.TYPE_IMAGE,loveMessage,mMediaUri, this);
 
             //Message sent.Switch to main screen.
             Intent intent = new Intent(SendMessage.this,Main.class);

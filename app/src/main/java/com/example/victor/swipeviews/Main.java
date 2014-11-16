@@ -68,43 +68,41 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             navigateToLogin();
         } else {
             // ako ima lognat potrebitel prodalzhava natatak
-            Log.i(TAG,"imame lognat potrebitel");
+            Log.i(TAG, "imame lognat potrebitel");
 
             //proveriavame dali e maz ili zhena
             MaleOrFemale = currentUser.getString(ParseConstants.KEY_MALEORFEMALE);
 
 
-
         }
 
-            pager = (ViewPager) findViewById(R.id.pager);
-            PagerAdapter pAdapter = new PagerAdapter(getSupportFragmentManager());
-            pager.setAdapter(pAdapter);
-            actionbar = getActionBar();
-            actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-            actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
-            actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
-            pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pager = (ViewPager) findViewById(R.id.pager);
+        PagerAdapter pAdapter = new PagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(pAdapter);
+        actionbar = getActionBar();
+        actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionbar.addTab(actionbar.newTab().setText(R.string.tab_days_title).setTabListener(this));
+        actionbar.addTab(actionbar.newTab().setText(R.string.tab_chat_title).setTabListener(this));
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                }
+            }
 
-                @Override
-                public void onPageSelected(int position) {
-                    actionbar.setSelectedNavigationItem(position);
-                }
+            @Override
+            public void onPageSelected(int position) {
+                actionbar.setSelectedNavigationItem(position);
+            }
 
-                @Override
-                public void onPageScrollStateChanged(int state) {
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
-                }
-            });
+            }
+        });
 
 
     }
-
 
 
     protected void navigateToLogin() {
@@ -123,32 +121,30 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.menu_send_kiss:
                 //SendPushMessages sadarza metoda za izprashtane na push
                 SendParsePushMessagesAndParseObjects pushM = new SendParsePushMessagesAndParseObjects();
-                ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
                 String message = ParseUser.getCurrentUser().getUsername() + " " +
                         getString(R.string.send_a_kiss_message); //niakoi ti izprati celuvka
                 Intent intentSendTo = new Intent(Main.this, SendTo.class);
-                startActivityForResult(intentSendTo,ACTIVITY_SEND_TO);
-                //pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
+                startActivityForResult(intentSendTo, ACTIVITY_SEND_TO);
                 return true;
             case R.id.menu_send_message:
-                Intent intent = new Intent(this,SendMessage.class);
+                Intent intent = new Intent(this, SendMessage.class);
                 startActivity(intent);
                 return true;
 
             case R.id.menu_fertility_calendar:
                 DialogFragment newDialog = new MenstrualCalendarDialog();
-                newDialog.show(getFragmentManager(),"Welcome");
-                Log.d("Vic","Calendar menu");
+                newDialog.show(getFragmentManager(), "Welcome");
+                Log.d("Vic", "Calendar menu");
                 return true;
 
             case R.id.menu_sex:
                 DialogFragment sexDialog = new MaleOrFemaleDialog();
-                sexDialog.show(getFragmentManager(),"Welcome");
-                Log.d("Vic","Sex menu");
+                sexDialog.show(getFragmentManager(), "Welcome");
+                Log.d("Vic", "Sex menu");
                 return true;
             case R.id.menu_logout:
                 currentUser.logOut();
@@ -158,7 +154,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 return true;
 
             case R.id.menu_edit_friends:
-                Intent intentSendMessage = new Intent(this,EditFriendsActivity.class);
+                Intent intentSendMessage = new Intent(this, EditFriendsActivity.class);
                 startActivity(intentSendMessage);
                 return true;
 
@@ -171,17 +167,24 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //tuk se izprashta push message sled cakane za izprashtane na celuvka
+
         String user = ParseUser.getCurrentUser().getUsername();
-        if(requestCode == ACTIVITY_SEND_TO ) {
-           ArrayList<String> parseUserNames =
-                   data.getStringArrayListExtra(ParseConstants.KEY_USERNAME);
-           ArrayList<String> parseObjectIDs =
-                   data.getStringArrayListExtra(ParseConstants.KEY_RECEPIENT_IDS);
-            SendParsePushMessagesAndParseObjects sendKiss = new SendParsePushMessagesAndParseObjects();
-            sendKiss.sendPush(parseObjectIDs,"not used",ParseConstants.TYPE_PUSH_KISS,
-                    user +" "+ getString(R.string.send_a_kiss_message));
+        if (resultCode == RESULT_OK) {
+            if (requestCode == ACTIVITY_SEND_TO) {
+                ArrayList<String> parseUserNames =
+                        data.getStringArrayListExtra(ParseConstants.KEY_USERNAME);
+                ArrayList<String> parseObjectIDs =
+                        data.getStringArrayListExtra(ParseConstants.KEY_RECEPIENT_IDS);
+
+                SendParsePushMessagesAndParseObjects sendKiss = new SendParsePushMessagesAndParseObjects();
+                sendKiss.sendPush(parseObjectIDs, parseUserNames,"not used", ParseConstants.TYPE_PUSH_KISS,
+                        user + " " + getString(R.string.send_a_kiss_message), Main.this);
+            } else if (resultCode != RESULT_CANCELED) {
+                Toast.makeText(this, R.string.general_error_message, Toast.LENGTH_LONG).show();
+            }
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

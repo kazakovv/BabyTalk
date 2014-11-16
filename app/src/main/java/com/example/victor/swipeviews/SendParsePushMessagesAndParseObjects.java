@@ -38,8 +38,11 @@ public class SendParsePushMessagesAndParseObjects {
         });
     }
 
-    protected void sendPush( ArrayList<String> recepients, String senderMessageText, String typeOfMessage,
-                            String message) {
+    protected void sendPush( ArrayList<String> recepients, ArrayList<String> usernames,
+                             String senderMessageText, String typeOfMessage,
+                             String message, Context context) {
+        int i = 0;
+
         for(String recepient: recepients) {
 
             // Create our Installation query
@@ -58,6 +61,10 @@ public class SendParsePushMessagesAndParseObjects {
                 if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_KISS)) {
                     obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_KISS);
 
+                    //Print a toast message
+                    String user = usernames.get(i).toString();
+                    Toast.makeText(context, "You sent a kiss to " + user, Toast.LENGTH_LONG).show();
+                    i++;
                 } else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_MESSAGE)) {
                     obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_MESSAGE);
                     obj.put(ParseConstants.KEY_PUSH_MESSAGE, message);
@@ -72,6 +79,7 @@ public class SendParsePushMessagesAndParseObjects {
                 push.setQuery(pushQuery); // Set our Installation query
                 push.setData(obj); //dobaviame dopalnitelnite neshta kam saobshtenieto
                 push.sendInBackground();
+
 
             } catch (Exception e) {
                 //there was an error
@@ -131,22 +139,23 @@ public class SendParsePushMessagesAndParseObjects {
         messageTosend.put(ParseConstants.KEY_LOVE_MESSAGE,loveMessage);
         messageTosend.put(ParseConstants.KEY_FILE_TYPE, messageType);
 
-        //razbiva fila na array ot bitove, za da go pratim prez parse.com
-        byte[] fileBytes = FileHelper.getByteArrayFromFile(context, mMediaUri);
+        if(mMediaUri != null) {
+            //razbiva fila na array ot bitove, za da go pratim prez parse.com
+            byte[] fileBytes = FileHelper.getByteArrayFromFile(context, mMediaUri);
 
-        if (fileBytes != null ) {
+            if (fileBytes != null) {
 
 
-            if(messageType.equals(ParseConstants.TYPE_IMAGE)) {
-                fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+                if (messageType.equals(ParseConstants.TYPE_IMAGE)) {
+                    fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+                }
+                String fileName = FileHelper.getFileName(context, mMediaUri, messageType);
+                ParseFile file = new ParseFile(fileName, fileBytes);//***** sazdavame ParseFile********
+                messageTosend.put(ParseConstants.KEY_FILE, file);
+
+
             }
-            String fileName = FileHelper.getFileName(context,mMediaUri,messageType);
-            ParseFile file = new ParseFile(fileName,fileBytes);//***** sazdavame ParseFile********
-            messageTosend.put(ParseConstants.KEY_FILE,file);
-
-
         }
-
         messageTosend.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {

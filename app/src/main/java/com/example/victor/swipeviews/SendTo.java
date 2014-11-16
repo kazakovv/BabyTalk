@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -27,6 +28,7 @@ import java.util.ListIterator;
 
 public class SendTo extends ListActivity {
     public static final String TAG = SendTo.class.getSimpleName();
+
 
     protected List<ParseUser> mPartners;
     protected ArrayList<Integer> mSendTo; //izpolzva se samo kato broiach v onListItemClick
@@ -92,10 +94,12 @@ public class SendTo extends ListActivity {
 
             intent.putStringArrayListExtra(ParseConstants.KEY_USERNAME,mRecepientUserNames);
             intent.putStringArrayListExtra(ParseConstants.KEY_RECEPIENT_IDS,mRecepientIDs);
-            setResult(RESULT_OK,intent);
+            setResult(RESULT_OK, intent);
             finish();
             return true;
         case R.id.action_settings:
+            Intent intentSendMessage = new Intent(this, EditFriendsActivity.class);
+            startActivity(intentSendMessage);
             return true;
         }
 

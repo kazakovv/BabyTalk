@@ -9,6 +9,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -28,12 +29,16 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class SendMessage extends Activity {
     EditText messageToSend;
     ImageView mUploadMedia;
     TextView mSendMessageTo;
+
+    ArrayList<String> parseUserNames;
+    ArrayList<String> parseObjectIDs;
 
     public static final int TAKE_PHOTO_REQUEST = 0;
     public static final int TAKE_VIDEO_REQUEST = 1;
@@ -42,6 +47,8 @@ public class SendMessage extends Activity {
 
     public static final int MEDIA_TYPE_IMAGE = 4;
     public static final int MEDIA_TYPE_VIDEO = 5;
+
+    public static final int ACTIVITY_SEND_TO = 11;
 
     protected Uri mMediaUri;
 
@@ -166,17 +173,35 @@ public class SendMessage extends Activity {
     //metod koito se vika kogato niakoi Intent varne rezultat
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK) {
-            if(requestCode == CHOOSE_PHOTO_REQUEST || requestCode == CHOOSE_VIDEO_REQUEST) {
+
+
+        if (resultCode == RESULT_OK) {
+
+            //tuk se obrabotva rezultata ot sendTo activity
+            //Ima problem, zashtoto sled tova preprashta kam kraia na metoda i dava general error message
+
+            if (requestCode == ACTIVITY_SEND_TO) {
+
+                parseUserNames = data.getStringArrayListExtra(ParseConstants.KEY_USERNAME);
+                parseObjectIDs = data.getStringArrayListExtra(ParseConstants.KEY_RECEPIENT_IDS);
+                String message = constructListOfRecepeintsAsStringTo(parseUserNames);
+                mSendMessageTo.setText(message);
+                Log.d("Vic","the message is "+message);
+                return; //ne prodalzhavame natatak s metoda
+
+            }
+
+
+            //tova obrabotva rezultata ot snimane ili kachvane na file
+            if (requestCode == CHOOSE_PHOTO_REQUEST || requestCode == CHOOSE_VIDEO_REQUEST) {
                 //tova e sluchaia v koito izbirame photo ili video ot galeriata
-                if(data == null) {
-                    Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
+                if (data == null) {
+                    Toast.makeText(this, R.string.general_error_message, Toast.LENGTH_LONG).show();
                 } else {
                     mMediaUri = data.getData();
-
+                    createThumbnail(requestCode);
                 }
-                Log.d("Vic","Media URI: " +mMediaUri);
-                if(requestCode == CHOOSE_VIDEO_REQUEST) {
+                if (requestCode == CHOOSE_VIDEO_REQUEST) {
                     //proveriavame dali file size > 10MB
                     int fileSize = 0;
                     InputStream inputStream = null;
@@ -186,7 +211,7 @@ public class SendMessage extends Activity {
                         fileSize = inputStream.available();
 
                     } catch (Exception e) {
-                        Toast.makeText(SendMessage.this,R.string.error_video_cannot_be_added, Toast.LENGTH_LONG).show();
+                        Toast.makeText(SendMessage.this, R.string.error_video_cannot_be_added, Toast.LENGTH_LONG).show();
                         return;
                     } finally {
                         try {
@@ -196,10 +221,12 @@ public class SendMessage extends Activity {
                             //blank
                         }
                     }
-                    if(fileSize > FILE_SIZE_LIMIT) {
-                        Toast.makeText(SendMessage.this,R.string.error_file_too_large,Toast.LENGTH_LONG).show();
+                    if (fileSize > FILE_SIZE_LIMIT) {
+                        Toast.makeText(SendMessage.this, R.string.error_file_too_large, Toast.LENGTH_LONG).show();
                         return; //prekratiavame metoda tuk.
                     }
+
+                    createThumbnail(requestCode);
                 }
             } else {
                 //dobaviame snimkata ili videoto kam galeriata
@@ -207,36 +234,43 @@ public class SendMessage extends Activity {
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
                 mediaScanIntent.setData(mMediaUri);
                 sendBroadcast(mediaScanIntent); //broadcast intent
+
+
             }
+
 
             /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
             //startirame prozoreca, kadeto se izbira na kogo da pratish saobshtenieto.
-
             Intent recipientsIntent = new Intent(this, ActivityRecipients.class);
             recipientsIntent.setData(mMediaUri); //vrazvame mMediaUri kam intent
-
             //Dobaviame tipa na file kam Intent
             String fileType;
             if(requestCode == TAKE_PHOTO_REQUEST || requestCode == CHOOSE_PHOTO_REQUEST) {
-
                 fileType = ParseConstants.TYPE_IMAGE;
             } else {
                 fileType = ParseConstants.TYPE_VIDEO;
             }
             //dobaviame tipa na file kam Intent
             recipientsIntent.putExtra(ParseConstants.KEY_FILE_TYPE,fileType);
-
             startActivity(recipientsIntent);
             */
 
-            //create a thumbnail preview of the image/movie that was selected
 
-            Bitmap bitmap = null;
-            Bitmap thumbnail = null;
-            if(requestCode == CHOOSE_PHOTO_REQUEST || requestCode == TAKE_PHOTO_REQUEST) {
+        } else if (resultCode != RESULT_CANCELED) {
+            Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    protected void createThumbnail(int requestCode) {
+        //create a thumbnail preview of the image/movie that was selected
+
+        Bitmap bitmap = null;
+        Bitmap thumbnail = null;
+        if(requestCode == CHOOSE_PHOTO_REQUEST || requestCode == TAKE_PHOTO_REQUEST) {
 
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), mMediaUri);
@@ -252,19 +286,35 @@ public class SendMessage extends Activity {
             int newHeight = 800;
 
             thumbnail = ThumbnailUtils.extractThumbnail(bitmap, newWidth, newHeight);
-            } else { //ako ne e photo triabva da e video
-                thumbnail = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(
-                        mMediaUri.getPath(), MediaStore.Images.Thumbnails.MINI_KIND), 800, 500);
-            }
-            ImageView imageViewForThumbnailPreview = (ImageView) findViewById(R.id.thumbnailPreview);
-            imageViewForThumbnailPreview.setImageBitmap(thumbnail);
-
-        } else if (resultCode != RESULT_CANCELED) {
-            Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
+        } else { //ako ne e photo triabva da e video
+            thumbnail = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(
+                    mMediaUri.getPath(), MediaStore.Images.Thumbnails.MINI_KIND), 800, 500);
         }
+        ImageView imageViewForThumbnailPreview = (ImageView) findViewById(R.id.thumbnailPreview);
+        imageViewForThumbnailPreview.setImageBitmap(thumbnail);
     }
 
+    protected String constructListOfRecepeintsAsStringTo(ArrayList<String> users) {
+        String message;
+        String listOfUsers = "";
 
+        int size = users.size();
+        if(size == 0) {
+            message = getString(R.string.send_message_to);
+        } else {
+
+            int i = 0;
+            for (String user : users) {
+                listOfUsers = listOfUsers + " " + user;
+                i++;
+                if (i != size) {
+                    listOfUsers = listOfUsers + ","; //slagame zapetaika m/u users osven sled poslednia
+                }
+            }
+            message = getString(R.string.send_message_to_add_users) + listOfUsers;
+        }
+        return message;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,15 +332,16 @@ public class SendMessage extends Activity {
                 dialog.show();
             }
         });
-
+        //Izbirane na poluchateli na saobshtenieto
         mSendMessageTo = (TextView) findViewById(R.id.sendTo);
         mSendMessageTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SendMessage.this, SendTo.class);
-                startActivity(intent);
+                startActivityForResult(intent,ACTIVITY_SEND_TO);
             }
         });
+
     }
 
 
@@ -343,6 +394,8 @@ public class SendMessage extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

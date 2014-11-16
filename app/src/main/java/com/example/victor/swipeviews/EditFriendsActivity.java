@@ -55,7 +55,7 @@ public class EditFriendsActivity extends ListActivity {
                 setProgressBarIndeterminateVisibility(false);
 
 
-                if (e ==null) {
+                if (e == null) {
                //success
                    mUsers = parseUsers;
                    String[] usernames = new String[mUsers.size()];

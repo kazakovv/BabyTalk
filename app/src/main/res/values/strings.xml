@@ -60,6 +60,7 @@
     <string name="button_send_kiss">Send a kiss</string>
     <string name="button_send_message">Send a message</string>
     <string name="send_message_to">To:_____</string>
+    <string name="send_message_to_add_users">To: </string>
     <string name="empty_recipients_message">Chose your partner(s) first</string>
 
     <string-array name="camera_choices">
@@ -71,5 +72,6 @@
 
     <string name="title_activity_send_message">SendMessage</string>
     <string name="title_activity_send_to">SendTo</string>
+
 
 </resources>

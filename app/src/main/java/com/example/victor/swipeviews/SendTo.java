@@ -1,14 +1,16 @@
 package com.example.victor.swipeviews;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -16,13 +18,21 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 
 public class SendTo extends ListActivity {
     public static final String TAG = SendTo.class.getSimpleName();
 
     protected List<ParseUser> mPartners;
+    protected ArrayList<Integer> mSendTo; //izpolzva se samo kato broiach v onListItemClick
+    protected ArrayList<String> mRecepientIDs;
+    protected ArrayList<String> mRecepientUserNames;
+
     protected ParseRelation<ParseUser> mPartnersRelation;
     protected ParseUser mCurrentUser;
 
@@ -32,7 +42,16 @@ public class SendTo extends ListActivity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_send_to);
 
+
+        //trasi koi e zadaden kato partnior i go izkarva v spisak
         findPartners();
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        //inicializirame arraylists, za da mozem da dobaviame info kam tiah
+        mSendTo = new ArrayList<Integer>();
+        mRecepientIDs = new ArrayList<String>();
+        mRecepientUserNames = new ArrayList<String>();
+
     }
 
 
@@ -44,19 +63,47 @@ public class SendTo extends ListActivity {
     }
 
     @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        if(l.isItemChecked(position)) {
+            mSendTo.add(position);
+            mRecepientIDs.add(mPartners.get(position).getObjectId());
+            mRecepientUserNames.add(mPartners.get(position).getUsername());
+        } else {
+            int positionToRemove = mSendTo.indexOf(position);
+            mSendTo.remove(positionToRemove);
+            mRecepientIDs.remove(positionToRemove);
+            mRecepientUserNames.remove(positionToRemove);
+            //mSendTo.remove(new Integer(position));
+
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch(item.getItemId()) {
+        case R.id.action_ok:
+            Intent intent = new Intent(SendTo.this, SendMessage.class);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+            intent.putStringArrayListExtra(ParseConstants.KEY_USERNAME,mRecepientUserNames);
+            intent.putStringArrayListExtra(ParseConstants.KEY_RECEPIENT_IDS,mRecepientIDs);
+            setResult(RESULT_OK,intent);
+            finish();
+            return true;
+        case R.id.action_settings:
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
     }
+
+
     public void findPartners() {
         mCurrentUser = ParseUser.getCurrentUser();
         mPartnersRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDSRELATION);
@@ -70,7 +117,7 @@ public class SendTo extends ListActivity {
             setProgressBarIndeterminateVisibility(false);
 
                 if(e == null) {
-            //Partners found
+               //Partners found
                 mPartners = parseUsers;
                 String[] usernames = new String[mPartners.size()];
                 int i = 0;
@@ -99,6 +146,8 @@ public class SendTo extends ListActivity {
             }
         });
     }
+
+
 
 
 }

@@ -47,6 +47,8 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     protected String MaleOrFemale;
     TextView mainMessage;
 
+    public static final int ACTIVITY_SEND_TO = 11;
+
     public static final String TAG = Main.class.getSimpleName();
 
 
@@ -128,6 +130,8 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
                 String message = ParseUser.getCurrentUser().getUsername() + " " +
                         getString(R.string.send_a_kiss_message); //niakoi ti izprati celuvka
+                Intent intentSendTo = new Intent(Main.this, SendTo.class);
+                startActivityForResult(intentSendTo,ACTIVITY_SEND_TO);
                 //pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
                 return true;
             case R.id.menu_send_message:
@@ -161,6 +165,22 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //tuk se izprashta push message sled cakane za izprashtane na celuvka
+        String user = ParseUser.getCurrentUser().getUsername();
+        if(requestCode == ACTIVITY_SEND_TO ) {
+           ArrayList<String> parseUserNames =
+                   data.getStringArrayListExtra(ParseConstants.KEY_USERNAME);
+           ArrayList<String> parseObjectIDs =
+                   data.getStringArrayListExtra(ParseConstants.KEY_RECEPIENT_IDS);
+            SendParsePushMessagesAndParseObjects sendKiss = new SendParsePushMessagesAndParseObjects();
+            sendKiss.sendPush(parseObjectIDs,"not used",ParseConstants.TYPE_PUSH_KISS,
+                    user +" "+ getString(R.string.send_a_kiss_message));
+        }
     }
 
     @Override

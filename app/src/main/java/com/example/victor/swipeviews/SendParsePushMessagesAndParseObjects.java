@@ -119,8 +119,35 @@ public class SendParsePushMessagesAndParseObjects {
         return recepientIDs;
     }
  */
-    protected void send(ParseObject message, final Context context) {
-        message.saveInBackground(new SaveCallback() {
+    protected void send(ParseUser currentParseUser, ArrayList<String> recepientIDs,
+                        String messageType, String loveMessage,
+                        Uri mMediaUri, final Context context) {
+
+
+        ParseObject messageTosend = new ParseObject(ParseConstants.CLASS_MESSAGES);
+        messageTosend.put(ParseConstants.KEY_SENDER_ID,currentParseUser.getObjectId());
+        messageTosend.put(ParseConstants.KEY_SENDER_NAME,currentParseUser.getUsername());
+        messageTosend.put(ParseConstants.KEY_RECEPIENT_IDS,recepientIDs);
+        messageTosend.put(ParseConstants.KEY_LOVE_MESSAGE,loveMessage);
+        messageTosend.put(ParseConstants.KEY_FILE_TYPE, messageType);
+
+        //razbiva fila na array ot bitove, za da go pratim prez parse.com
+        byte[] fileBytes = FileHelper.getByteArrayFromFile(context, mMediaUri);
+
+        if (fileBytes != null ) {
+
+
+            if(messageType.equals(ParseConstants.TYPE_IMAGE)) {
+                fileBytes = FileHelper.reduceImageForUpload(fileBytes);
+            }
+            String fileName = FileHelper.getFileName(context,mMediaUri,messageType);
+            ParseFile file = new ParseFile(fileName,fileBytes);//***** sazdavame ParseFile********
+            messageTosend.put(ParseConstants.KEY_FILE,file);
+
+
+        }
+
+        messageTosend.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {

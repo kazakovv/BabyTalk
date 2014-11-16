@@ -37,8 +37,8 @@ public class SendMessage extends Activity {
     ImageView mUploadMedia;
     TextView mSendMessageTo;
 
-    ArrayList<String> parseUserNames;
-    ArrayList<String> parseObjectIDs;
+    ArrayList<String> parseUserNames; //spisak s Usernames na poluchatelite na saobshtenieto
+    ArrayList<String> parseObjectIDs; //spisak s ID na poluchatelite na saobshtenieto
 
     public static final int TAKE_PHOTO_REQUEST = 0;
     public static final int TAKE_VIDEO_REQUEST = 1;
@@ -56,7 +56,7 @@ public class SendMessage extends Activity {
 
     public static final String TAG = SendMessage.class.getSimpleName();
 
-    //onCLick listener za kamerata
+    //onCLick listener za uload na picture ili video
     protected DialogInterface.OnClickListener mUploadPictureOrVideo =
             new DialogInterface.OnClickListener() {
                 @Override
@@ -199,7 +199,6 @@ public class SendMessage extends Activity {
                     Toast.makeText(this, R.string.general_error_message, Toast.LENGTH_LONG).show();
                 } else {
                     mMediaUri = data.getData();
-                    createThumbnail(requestCode);
                 }
                 if (requestCode == CHOOSE_VIDEO_REQUEST) {
                     //proveriavame dali file size > 10MB
@@ -258,7 +257,7 @@ public class SendMessage extends Activity {
             startActivity(recipientsIntent);
             */
 
-
+            createThumbnail(requestCode);
         } else if (resultCode != RESULT_CANCELED) {
             Toast.makeText(this,R.string.general_error_message,Toast.LENGTH_LONG).show();
         }
@@ -362,33 +361,29 @@ public class SendMessage extends Activity {
 
         if(id == R.id.action_send) {
 
-            /*
-            //Pravia spisak s poluchatelite
-            ArrayList<String> recepientIDs = new ArrayList<String>();
-            recepientIDs.add(ParseUser.getCurrentUser().getObjectId());
 
-
-            ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
-            */
 
             //Izprashtam push notification
             SendParsePushMessagesAndParseObjects pushM = new SendParsePushMessagesAndParseObjects();
-
             String senderMessageText = ParseUser.getCurrentUser().getUsername() + " " +
                     getString(R.string.send_a_message_message); //niakoi ti izprati sabshtenie
-            String message = messageToSend.getText().toString();
-            pushM.sendPush(parseObjectIDs, senderMessageText, ParseConstants.TYPE_PUSH_MESSAGE,message);
+            String loveMessage = messageToSend.getText().toString();
+            pushM.sendPush(parseObjectIDs, senderMessageText,
+                    ParseConstants.TYPE_PUSH_MESSAGE,loveMessage);
 
             //Izprashtam Parse message
-            ParseObject messageTosend = new ParseObject(ParseConstants.CLASS_MESSAGES);
-            messageTosend.put(ParseConstants.KEY_SENDER_ID,ParseUser.getCurrentUser().getObjectId());
-            messageTosend.put(ParseConstants.KEY_SENDER_NAME,ParseUser.getCurrentUser().getUsername());
-            messageTosend.put(ParseConstants.KEY_RECEPIENT_IDS,parseObjectIDs);
-            messageTosend.put(ParseConstants.KEY_FILE_TYPE, ParseConstants.TYPE_TEXTMESSAGE);
+            SendParsePushMessagesAndParseObjects sendParse =
+                    new SendParsePushMessagesAndParseObjects();
+            sendParse.send(ParseUser.getCurrentUser(),parseObjectIDs,
+                    ParseConstants.TYPE_TEXTMESSAGE,loveMessage,mMediaUri, this);
 
+            //Message sent.Switch to main screen.
+            Intent intent = new Intent(SendMessage.this,Main.class);
+            //dobaviame flagove, za da ne moze usera da se varne pak kam toya ekran
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
 
-            SendParsePushMessagesAndParseObjects sendParse = new SendParsePushMessagesAndParseObjects();
-            sendParse.send(messageTosend,this);
         }
 
 

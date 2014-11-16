@@ -13,5 +13,6 @@ public class BabyTalkApplication extends Application {
         Parse.initialize(this, "q8kuy8UbICvlNOFsPLNCAMTTFyrcLbmC1jNKLddU", "ApdaaWEaZSNdob8maokZyxRHJlQA6BoOfWdh9y3L");
 
 
+
     }
 }

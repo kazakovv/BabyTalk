@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 
 
@@ -61,6 +62,10 @@ public class LoginActivity extends Activity {
                             if (parseUser != null) {
                                 //logvame se uspeshno
 
+                                //instalaciata vrazva device sas application. Tova se pravi za da mozhe da se poluchavat push notifications
+                                //posle moga da napisha query, koiato da tarsi po parseuser ustroistvoto
+                                SendParsePushMessagesAndParseObjects register = new SendParsePushMessagesAndParseObjects();
+                                register.registerForPush( ParseUser.getCurrentUser());
 
 
                                 //User successfully created!.Switch to main screen.

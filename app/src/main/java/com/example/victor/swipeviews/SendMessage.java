@@ -362,13 +362,14 @@ public class SendMessage extends Activity {
 
         if(id == R.id.action_send) {
 
-
+            /*
             //Pravia spisak s poluchatelite
             ArrayList<String> recepientIDs = new ArrayList<String>();
             recepientIDs.add(ParseUser.getCurrentUser().getObjectId());
 
 
             ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
+            */
 
             //Izprashtam push notification
             SendParsePushMessagesAndParseObjects pushM = new SendParsePushMessagesAndParseObjects();
@@ -376,13 +377,13 @@ public class SendMessage extends Activity {
             String senderMessageText = ParseUser.getCurrentUser().getUsername() + " " +
                     getString(R.string.send_a_message_message); //niakoi ti izprati sabshtenie
             String message = messageToSend.getText().toString();
-            pushM.sendPush(recepient, senderMessageText, ParseConstants.TYPE_PUSH_MESSAGE,message);
+            pushM.sendPush(parseObjectIDs, senderMessageText, ParseConstants.TYPE_PUSH_MESSAGE,message);
 
             //Izprashtam Parse message
             ParseObject messageTosend = new ParseObject(ParseConstants.CLASS_MESSAGES);
             messageTosend.put(ParseConstants.KEY_SENDER_ID,ParseUser.getCurrentUser().getObjectId());
             messageTosend.put(ParseConstants.KEY_SENDER_NAME,ParseUser.getCurrentUser().getUsername());
-            messageTosend.put(ParseConstants.KEY_RECEPIENT_IDS,recepientIDs);
+            messageTosend.put(ParseConstants.KEY_RECEPIENT_IDS,parseObjectIDs);
             messageTosend.put(ParseConstants.KEY_FILE_TYPE, ParseConstants.TYPE_TEXTMESSAGE);
 
 

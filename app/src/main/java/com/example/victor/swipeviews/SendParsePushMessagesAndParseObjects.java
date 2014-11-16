@@ -25,46 +25,59 @@ import java.util.ArrayList;
  */
 public class SendParsePushMessagesAndParseObjects {
 
-
-    protected void sendPush( ParseUser recepient, String senderMessageText, String typeOfMessage,
-                            String message) {
-
-        // Create our Installation query
-        ParseQuery pushQuery = ParseInstallation.getQuery();
-        pushQuery.whereEqualTo(ParseConstants.KEY_USER,
-                recepient);
-
-        //dobaviame dopalinetelnata info kam JSON object
-        JSONObject obj;
-        try {
-            obj = new JSONObject();
-
-            obj.put(ParseConstants.KEY_PUSH_MESSAGE, message); //tova e osnovnoto saobshtenie
-
-            //zadava tipa push
-            if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_KISS)) {
-                obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_KISS);
-
-            } else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_MESSAGE)) {
-                obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_MESSAGE);
-                obj.put(ParseConstants.KEY_PUSH_MESSAGE, message);
-
-            } else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_CALENDAR)) {
-                obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_CALENDAR);
+    protected void registerForPush(ParseUser currentParseUser) {
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put(ParseConstants.KEY_USER, currentParseUser.getObjectId());
+        installation.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e!=null) {
+                    Log.d("Vic", "push error " + e.toString());
+                }
             }
+        });
+    }
+
+    protected void sendPush( ArrayList<String> recepients, String senderMessageText, String typeOfMessage,
+                            String message) {
+        for(String recepient: recepients) {
+
+            // Create our Installation query
+            ParseQuery pushQuery = ParseInstallation.getQuery();
+            pushQuery.whereEqualTo(ParseConstants.KEY_USER,
+                    recepient);
+
+            //dobaviame dopalinetelnata info kam JSON object
+            JSONObject obj;
+            try {
+                obj = new JSONObject();
+
+                obj.put(ParseConstants.KEY_PUSH_MESSAGE, message); //tova e osnovnoto saobshtenie
+
+                //zadava tipa push
+                if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_KISS)) {
+                    obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_KISS);
+
+                } else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_MESSAGE)) {
+                    obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_MESSAGE);
+                    obj.put(ParseConstants.KEY_PUSH_MESSAGE, message);
+
+                } else if (typeOfMessage.equals(ParseConstants.TYPE_PUSH_CALENDAR)) {
+                    obj.put(ParseConstants.KEY_ACTION, ParseConstants.TYPE_PUSH_CALENDAR);
+                }
 
 
-            // Send push notification to query
-            ParsePush push = new ParsePush();
-            push.setQuery(pushQuery); // Set our Installation query
-            push.setData(obj); //dobaviame dopalnitelnite neshta kam saobshtenieto
-            push.sendInBackground();
+                // Send push notification to query
+                ParsePush push = new ParsePush();
+                push.setQuery(pushQuery); // Set our Installation query
+                push.setData(obj); //dobaviame dopalnitelnite neshta kam saobshtenieto
+                push.sendInBackground();
 
-        } catch (Exception e) {
-            //there was an error
+            } catch (Exception e) {
+                //there was an error
 
+            }
         }
-
     }
 
 

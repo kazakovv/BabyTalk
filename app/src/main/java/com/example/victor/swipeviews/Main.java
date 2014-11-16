@@ -71,11 +71,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             //proveriavame dali e maz ili zhena
             MaleOrFemale = currentUser.getString(ParseConstants.KEY_MALEORFEMALE);
 
-            //instalaciata vrazva device sas application. Tova se pravi za da mozhe da se poluchavat push notifications
-            //posle moga da napisha query, koiato da tarsi po parseuser ustroistvoto
-            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-            installation.put(ParseConstants.KEY_USER, ParseUser.getCurrentUser());
-            installation.saveInBackground();
+
 
         }
 
@@ -132,7 +128,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 ParseUser recepient = ParseUser.getCurrentUser();//izprashtam go na men si.
                 String message = ParseUser.getCurrentUser().getUsername() + " " +
                         getString(R.string.send_a_kiss_message); //niakoi ti izprati celuvka
-                pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
+                //pushM.sendPush(recepient,message,ParseConstants.TYPE_PUSH_KISS,"");
                 return true;
             case R.id.menu_send_message:
                 Intent intent = new Intent(this,SendMessage.class);

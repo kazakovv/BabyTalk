@@ -227,10 +227,11 @@ public class SendMessage extends Activity {
                     }
                     if (fileSize > FILE_SIZE_LIMIT) {
                         Toast.makeText(SendMessage.this, R.string.error_file_too_large, Toast.LENGTH_LONG).show();
+                        mMediaUri = null;
                         return; //prekratiavame metoda tuk.
                     }
 
-                    createThumbnail(requestCode);
+                    //createThumbnail(requestCode);
                 }
             } else {
                 //dobaviame snimkata ili videoto kam galeriata
@@ -294,8 +295,15 @@ public class SendMessage extends Activity {
             thumbnail = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(
                     mMediaUri.getPath(), MediaStore.Images.Thumbnails.MINI_KIND), 800, 500);
         }
+
         ImageView imageViewForThumbnailPreview = (ImageView) findViewById(R.id.thumbnailPreview);
+
+
         imageViewForThumbnailPreview.setImageBitmap(thumbnail);
+        if(thumbnail ==null) {
+            //ako thumbnail e null zadavame default kartinka
+            imageViewForThumbnailPreview.setImageResource(R.drawable.ic_action_picture);
+        }
     }
 
     protected String constructListOfRecepeintsAsStringTo(ArrayList<String> users) {

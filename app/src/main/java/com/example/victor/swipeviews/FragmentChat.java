@@ -113,11 +113,17 @@ public class FragmentChat extends ListFragment {
             startActivity(intent);
         } else {
         //view video
+            Intent intent = new Intent(getActivity(),ViewMovieActivity.class);
+            intent.setData(fileUri);
+            intent.putExtra(ParseConstants.KEY_LOVE_MESSAGE,loveMessage);
+            startActivity(intent);
+
+            /*
             //otvariame videoto v niakoia programa, koiato pokazva video.
-            // Tr da go smenia posle da se otvaria v VideoView!
             Intent intent = new Intent(Intent.ACTION_VIEW, fileUri);
             intent.setDataAndType(fileUri,"video/*");
             startActivity(intent);
+            */
         }
     }
 }

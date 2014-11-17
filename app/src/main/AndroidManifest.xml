@@ -76,7 +76,6 @@
             android:label="@string/title_activity_send_message"
             android:parentActivityName="com.example.victor.swipeviews.Main" >
         </activity>
-
         <activity
             android:name="com.example.victor.swipeviews.SendTo"
             android:label="@string/title_activity_send_to"
@@ -118,7 +117,10 @@
             </intent-filter>
         </receiver>
 
-
+        <activity
+            android:name="com.example.victor.swipeviews.ViewMovieActivity"
+            android:label="@string/title_activity_view_movie" >
+        </activity>
     </application>
 
 </manifest>

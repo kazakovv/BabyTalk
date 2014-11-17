@@ -41,16 +41,14 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.victor.swipeviews" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79458b40-b9b7-4834-b5ef-14c634051c50" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewMovieActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_movie.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_view_movie.xml" />
+      <change type="DELETED" beforePath="C:\Users\Victor\AndroidStudioProjects\BabyTalk2\app\src\main\res\menu\menu_view_movie.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentChat.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentChat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_image.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_image.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewMovieActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewMovieActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SwipeViews.iws" />
@@ -74,32 +72,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/Main.java">
+      <file leaf-file-name="SendMessage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2118" max-vertical-offset="3672">
-              <caret line="165" column="13" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
+            <state vertical-scroll-proportion="-7.392857" vertical-offset="5743" max-vertical-offset="6392">
+              <caret line="385" column="32" selection-start-line="385" selection-start-column="32" selection-end-line="385" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewImageActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewImageActivity.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-              <caret line="25" column="19" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FragmentChat.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentChat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1208" max-vertical-offset="1870">
-              <caret line="124" column="34" selection-start-line="122" selection-start-column="12" selection-end-line="124" selection-end-column="34" />
-              <folding />
+            <state vertical-scroll-proportion="4.095238" vertical-offset="0" max-vertical-offset="2261">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+              <folding>
+                <element signature="e#1528#1546#0" expanded="true" />
+                <element signature="e#1695#1713#0" expanded="true" />
+                <element signature="e#2055#2073#0" expanded="true" />
+                <element signature="e#2212#2230#0" expanded="true" />
+                <element signature="e#2459#2477#0" expanded="true" />
+                <element signature="e#2696#2714#0" expanded="true" />
+                <element signature="e#2932#2950#0" expanded="true" />
+                <element signature="e#3318#3336#0" expanded="true" />
+                <element signature="e#3543#3561#0" expanded="true" />
+                <element signature="e#3786#3804#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,47 +106,22 @@
       <file leaf-file-name="ViewMovieActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewMovieActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="69" max-vertical-offset="1122">
-              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="409" max-vertical-offset="969">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1016#1297#0" expanded="true" />
-                <element signature="e#1287#1288#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageResizer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ImageResizer.java">
+      <file leaf-file-name="SendParsePushMessagesAndParseObjects.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendParsePushMessagesAndParseObjects.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.9047619" vertical-offset="0" max-vertical-offset="1598">
-              <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1769" max-vertical-offset="2771">
+              <caret line="130" column="42" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="42" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FragmentDays.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentDays.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="320" max-vertical-offset="867">
-              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_view_movie.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_movie.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -1217,7 +1191,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-large/refs.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/dummy/FragmentFriends.java" />
@@ -1247,7 +1220,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/menu/settings_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_send_message.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_send_to.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/PagerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_send_to.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MyParcelable.java" />
@@ -1262,12 +1234,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendTo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendParsePushMessagesAndParseObjects.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ParseConstants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewImageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_image.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentChat.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_movie.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_view_movie.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewMovieActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1480,36 +1454,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SwipeViews" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BabyTalk2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1887,7 +1831,11 @@
       <created>1416174735673</created>
       <updated>1416174735679</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="receiving images and video working. Error as tries to resize movie files">
+      <created>1416256846154</created>
+      <updated>1416256846154</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1928,10 +1876,10 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26190478" sideWeight="0.5900151" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35884354" sideWeight="0.6527988" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7772109" sideWeight="0.6527988" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3139183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31316188" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2011,19 +1959,15 @@
     <MESSAGE value="Sending pushes/messages working. To develop uploading files" />
     <MESSAGE value="sending messages/kisses working" />
     <MESSAGE value="receiving images working" />
-    <option name="LAST_COMMIT_MESSAGE" value="receiving images working" />
+    <MESSAGE value="receiving images and video working. Error as tries to resize movie files" />
+    <option name="LAST_COMMIT_MESSAGE" value="receiving images and video working. Error as tries to resize movie files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="397" />
+      <option name="time" value="404" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_action_picture.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27321428" vertical-offset="0" max-vertical-offset="560">
@@ -2253,24 +2197,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1089" max-vertical-offset="2210">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <element signature="e#1528#1546#0" expanded="true" />
-            <element signature="e#1695#1713#0" expanded="true" />
-            <element signature="e#2055#2073#0" expanded="true" />
-            <element signature="e#2212#2230#0" expanded="true" />
-            <element signature="e#2459#2477#0" expanded="true" />
-            <element signature="e#2696#2714#0" expanded="true" />
-            <element signature="e#2932#2967#0" expanded="true" />
-            <element signature="e#3335#3372#0" expanded="true" />
-            <element signature="e#3579#3611#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_send_to.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4857143" vertical-offset="0" max-vertical-offset="560">
@@ -2350,14 +2276,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendParsePushMessagesAndParseObjects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2650334" vertical-offset="1251" max-vertical-offset="2771">
-          <caret line="127" column="5" selection-start-line="119" selection-start-column="3" selection-end-line="127" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ParseConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="901">
@@ -2366,26 +2284,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39305303" vertical-offset="5599" max-vertical-offset="6256">
-          <caret line="377" column="35" selection-start-line="377" selection-start-column="35" selection-end-line="377" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MessageAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33214286" vertical-offset="103" max-vertical-offset="1071">
           <caret line="27" column="18" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2118" max-vertical-offset="3672">
-          <caret line="165" column="13" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -2417,14 +2319,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewImageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-          <caret line="25" column="19" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_movie.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
@@ -2444,31 +2338,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ImageResizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2142857" vertical-offset="0" max-vertical-offset="1598">
+          <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentChat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1208" max-vertical-offset="1870">
+        <state vertical-scroll-proportion="0.84821427" vertical-offset="1208" max-vertical-offset="1870">
           <caret line="124" column="34" selection-start-line="122" selection-start-column="12" selection-end-line="124" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewImageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45535713" vertical-offset="0" max-vertical-offset="578">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19464286" vertical-offset="2118" max-vertical-offset="3672">
+          <caret line="165" column="13" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
+          <folding>
+            <element signature="e#2676#2699#0" expanded="true" />
+            <element signature="e#2776#2799#0" expanded="true" />
+            <element signature="e#4236#4275#0" expanded="true" />
+            <element signature="e#6540#6579#0" expanded="true" />
+            <element signature="e#6686#6716#0" expanded="true" />
+            <element signature="e#7490#7518#0" expanded="true" />
+            <element signature="e#7686#7712#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendParsePushMessagesAndParseObjects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1769" max-vertical-offset="2771">
+          <caret line="130" column="42" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.392857" vertical-offset="5743" max-vertical-offset="6392">
+          <caret line="385" column="32" selection-start-line="385" selection-start-column="32" selection-end-line="385" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewMovieActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="69" max-vertical-offset="1122">
-          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="409" max-vertical-offset="969">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1016#1297#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ImageResizer.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9047619" vertical-offset="0" max-vertical-offset="1598">
-          <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
-          <folding />
+        <state vertical-scroll-proportion="4.095238" vertical-offset="0" max-vertical-offset="2261">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <element signature="e#1528#1546#0" expanded="true" />
+            <element signature="e#1695#1713#0" expanded="true" />
+            <element signature="e#2055#2073#0" expanded="true" />
+            <element signature="e#2212#2230#0" expanded="true" />
+            <element signature="e#2459#2477#0" expanded="true" />
+            <element signature="e#2696#2714#0" expanded="true" />
+            <element signature="e#2932#2950#0" expanded="true" />
+            <element signature="e#3318#3336#0" expanded="true" />
+            <element signature="e#3543#3561#0" expanded="true" />
+            <element signature="e#3786#3804#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

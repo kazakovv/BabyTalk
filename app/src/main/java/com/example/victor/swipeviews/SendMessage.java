@@ -36,6 +36,7 @@ public class SendMessage extends Activity {
     EditText messageToSend;
     ImageView mUploadMedia;
     TextView mSendMessageTo;
+    String mMessageType;
 
     ArrayList<String> parseUserNames; //spisak s Usernames na poluchatelite na saobshtenieto
     ArrayList<String> parseObjectIDs; //spisak s ID na poluchatelite na saobshtenieto
@@ -67,6 +68,7 @@ public class SendMessage extends Activity {
                             if (mMediaUri == null) {
                                 Toast.makeText(SendMessage.this, R.string.error_message_toast_external_storage, Toast.LENGTH_LONG).show();
                             } else {
+                                mMessageType = ParseConstants.TYPE_IMAGE;
                                 takePicture();
                             }
                             break;
@@ -75,15 +77,18 @@ public class SendMessage extends Activity {
                             if (mMediaUri == null) {
                                 Toast.makeText(SendMessage.this, R.string.error_message_toast_external_storage, Toast.LENGTH_LONG).show();
                             } else {
+                                mMessageType = ParseConstants.TYPE_VIDEO;
                                 takeVideo();
                             }
                             break;
                         case 2: //choose picture
+                            mMessageType = ParseConstants.TYPE_IMAGE;
                             Intent choosePhotoIntent = new Intent(Intent.ACTION_GET_CONTENT);
                             choosePhotoIntent.setType("image/*");
                             startActivityForResult(choosePhotoIntent,CHOOSE_PHOTO_REQUEST);
                             break;
                         case 3: //choose video
+                            mMessageType = ParseConstants.TYPE_VIDEO;
                             Intent chooseVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
                             chooseVideoIntent.setType("video/*");
                             Toast.makeText(SendMessage.this,R.string.warning_max_video_size,Toast.LENGTH_LONG).show();
@@ -374,8 +379,11 @@ public class SendMessage extends Activity {
             //Izprashtam Parse message
             SendParsePushMessagesAndParseObjects sendParse =
                     new SendParsePushMessagesAndParseObjects();
+            //zadavam tipa na saobshtenieto Image ili video
+
+
             sendParse.send(ParseUser.getCurrentUser(),parseObjectIDs,
-                    ParseConstants.TYPE_IMAGE,loveMessage,mMediaUri, this);
+                    mMessageType,loveMessage,mMediaUri, this);
 
             //Message sent.Switch to main screen.
             Intent intent = new Intent(SendMessage.this,Main.class);

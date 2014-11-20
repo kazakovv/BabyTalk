@@ -71,7 +71,7 @@
       <file leaf-file-name="MessageAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MessageAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.845805" vertical-offset="362" max-vertical-offset="990">
+            <state vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="990">
               <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
               <folding />
             </state>
@@ -1444,7 +1444,11 @@
       <created>1416525982243</created>
       <updated>1416525982243</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="push working, sending receiving bugs fixed">
+      <created>1416526143019</created>
+      <updated>1416526143020</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -2245,7 +2249,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MessageAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.845805" vertical-offset="362" max-vertical-offset="990">
+        <state vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="990">
           <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
           <folding />
         </state>

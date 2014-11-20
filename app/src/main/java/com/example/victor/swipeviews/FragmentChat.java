@@ -67,18 +67,18 @@ public class FragmentChat extends ListFragment {
                     }
 
                      //Tova e obiknoven array adapter
-
+/*
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                             getListView().getContext(),
                             android.R.layout.simple_list_item_1,
                             usernames);
+*/
 
-                    /*
                     //Tova e po-gotinia ni ArrayAdaptor s kartinka v zavisimost ot tipa na file
-                    ama ne raboti...
+
                     MessageAdapter adapter = new MessageAdapter(getListView().getContext(),
                             mMessages);
-                     */
+
                     setListAdapter(adapter);
                 } else {
                     Log.e(TAG, e.getMessage());

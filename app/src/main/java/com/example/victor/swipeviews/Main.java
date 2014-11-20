@@ -123,6 +123,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         switch (item.getItemId()) {
             case R.id.menu_send_kiss:
+
                 //SendPushMessages sadarza metoda za izprashtane na push
                 SendParsePushMessagesAndParseObjects pushM = new SendParsePushMessagesAndParseObjects();
                 String message = ParseUser.getCurrentUser().getUsername() + " " +

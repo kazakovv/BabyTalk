@@ -33,6 +33,9 @@ public class SendParsePushMessagesAndParseObjects {
             public void done(ParseException e) {
                 if (e!=null) {
                     Log.d("Vic", "push error " + e.toString());
+                } else {
+
+                    Log.d("Vic", "push registered");
                 }
             }
         });

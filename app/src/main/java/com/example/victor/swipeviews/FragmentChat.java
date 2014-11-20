@@ -102,28 +102,35 @@ public class FragmentChat extends ListFragment {
         String messageType = (String) message.get(ParseConstants.KEY_FILE_TYPE);
         String loveMessage = (String) message.get(ParseConstants.KEY_LOVE_MESSAGE);
 
-        ParseFile file = message.getParseFile(ParseConstants.KEY_FILE);
-        Uri fileUri = Uri.parse(file.getUrl());
+        ParseFile file;
+        Uri fileUri = null;
 
+        //ako saobshtenieto ne e text, zapisvame reference kam file
+        if(!messageType.equals(ParseConstants.TYPE_TEXTMESSAGE) ) {
+            file = message.getParseFile(ParseConstants.KEY_FILE);
+            fileUri = Uri.parse(file.getUrl());
+
+        }
         if(messageType.equals(ParseConstants.TYPE_IMAGE)) {
-        //view image
-            Intent intent = new Intent(getActivity(),ViewImageActivity.class);
+            //view image
+            Intent intent = new Intent(getActivity(), ViewImageActivity.class);
             intent.setData(fileUri);
             intent.putExtra(ParseConstants.KEY_LOVE_MESSAGE, loveMessage);
             startActivity(intent);
-        } else {
+        } else if (messageType.equals(ParseConstants.TYPE_TEXTMESSAGE)){
+            //ako e text go otvariame v sashtotia view kato image
+            Intent intent = new Intent(getActivity(), ViewImageActivity.class);
+            intent.putExtra(ParseConstants.KEY_LOVE_MESSAGE, loveMessage);
+            startActivity(intent);
+
+        } else  {
         //view video
             Intent intent = new Intent(getActivity(),ViewMovieActivity.class);
             intent.setData(fileUri);
             intent.putExtra(ParseConstants.KEY_LOVE_MESSAGE,loveMessage);
             startActivity(intent);
 
-            /*
-            //otvariame videoto v niakoia programa, koiato pokazva video.
-            Intent intent = new Intent(Intent.ACTION_VIEW, fileUri);
-            intent.setDataAndType(fileUri,"video/*");
-            startActivity(intent);
-            */
+
         }
     }
 }

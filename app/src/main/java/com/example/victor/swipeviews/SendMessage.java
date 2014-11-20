@@ -387,8 +387,11 @@ public class SendMessage extends Activity {
             //Izprashtam Parse message
             SendParsePushMessagesAndParseObjects sendParse =
                     new SendParsePushMessagesAndParseObjects();
-            //zadavam tipa na saobshtenieto Image ili video
 
+            //zadavame tipa na saobshtenieto, ako ne e zadadeno veche, triabva da e samo text
+            if(mMessageType == null) {
+            mMessageType = ParseConstants.TYPE_TEXTMESSAGE;
+            }
 
             sendParse.send(ParseUser.getCurrentUser(),parseObjectIDs,
                     mMessageType,loveMessage,mMediaUri, this);

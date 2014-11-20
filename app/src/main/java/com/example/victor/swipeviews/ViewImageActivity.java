@@ -21,11 +21,13 @@ public class ViewImageActivity extends Activity {
         setContentView(R.layout.activity_view_image);
         loveMessage = (TextView) findViewById(R.id.loveMessage);
         ImageView imageView = (ImageView) findViewById(imageView_to_display_picture);
-        Uri imageUri = getIntent().getData(); //vzima Uri deto go podadohme ot drugata strana
         String loveMessageToDisplay = getIntent().getStringExtra(ParseConstants.KEY_LOVE_MESSAGE);
         loveMessage.setText(loveMessageToDisplay);
-        //Picasso e vanshta bibilioteka, koito ni pozvoliava da otvariame snimki ot internet
-        Picasso.with(this).load(imageUri).into(imageView);
+        if (getIntent().getData() != null) {
+            Uri imageUri = getIntent().getData(); //vzima Uri deto go podadohme ot drugata strana
+            //Picasso e vanshta bibilioteka, koito ni pozvoliava da otvariame snimki ot internet
+            Picasso.with(this).load(imageUri).into(imageView);
+        }
     }
 
 

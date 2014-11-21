@@ -44,10 +44,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79458b40-b9b7-4834-b5ef-14c634051c50" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SwipeViews.iws" />
@@ -1480,7 +1476,11 @@
       <created>1416606352872</created>
       <updated>1416606352872</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Seveal bugs sorted out">
+      <created>1416608861442</created>
+      <updated>1416608861442</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1583,7 +1583,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Menu reorganized" />
     <MESSAGE value="Sending pushes but not receiving them" />
     <MESSAGE value="Parse pushes working" />
     <MESSAGE value="Push notifications working. Custom Broadcast receiver" />
@@ -1608,7 +1607,8 @@
     <MESSAGE value="bugs fixed send receive adapter" />
     <MESSAGE value="Love box, love days" />
     <MESSAGE value="Sending videos bug sorted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sending videos bug sorted" />
+    <MESSAGE value="Seveal bugs sorted out" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seveal bugs sorted out" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

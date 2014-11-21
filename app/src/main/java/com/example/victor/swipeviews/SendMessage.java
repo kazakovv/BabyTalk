@@ -219,21 +219,19 @@ public class SendMessage extends Activity {
                 //dobaviame snimkata ili videoto kam galeriata
                 //tova e v sluchaite v koito sme snimali neshto
 
-                //proveriavame dali file size > limit
 
+                //parvo proveriavame razmera
                 if (checkFileSizeExceedsLimit(FILE_SIZE_LIMIT) == true) {
                     Toast.makeText(SendMessage.this, R.string.error_file_too_large, Toast.LENGTH_LONG).show();
                     mMediaUri = null;
                     return; //prekratiavame metoda tuk.
                 } else {
-                    //dobaviame snimkata ili videoto kam galeriata
-
 
                     Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
                     mediaScanIntent.setData(mMediaUri);
                     sendBroadcast(mediaScanIntent); //broadcast intent
-                }
 
+                }
             }
 
 

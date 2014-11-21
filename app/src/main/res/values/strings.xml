@@ -25,6 +25,7 @@
     <string name="sign_up_error_message">Please make sure you enter username, password and email address!</string>
     <string name="sign_up_error_title">Oops!</string>
     <string name="login_error_message">Please make sure you enter username and password!</string>
+    <string name="general_login_error_message">Login unsuccessful, please try again.</string>
     <string name="login_error_title">Oops!</string>
     <string name="logout_menu_title">Logout</string>
     <string name="tab_days_title">Love Days</string>

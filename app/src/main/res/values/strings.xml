@@ -39,7 +39,7 @@
     <string name="error_message_toast_external_storage">There was a problem accessing your device\'s external storage</string>
     <string name="general_error_message">Sorry, there was an error</string>
     <string name="warning_max_video_size">The selected video must be less than 10MB.</string>
-    <string name="error_video_cannot_be_added">There was a problem with the selected file.</string>
+    <string name="error_selected_file">There was a problem with the selected file.</string>
     <string name="error_file_too_large">The selected file is too large.</string>
     <string name="title_activity_recipients">ActivityRecipients</string>
     <string name="recipients_send_button_action_bar">Send</string>

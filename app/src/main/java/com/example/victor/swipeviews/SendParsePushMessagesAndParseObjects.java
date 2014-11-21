@@ -152,6 +152,8 @@ public class SendParsePushMessagesAndParseObjects {
                 if (messageType.equals(ParseConstants.TYPE_IMAGE)) {
                     fileBytes = FileHelper.reduceImageForUpload(fileBytes);
                 }
+
+
                 String fileName = FileHelper.getFileName(context, mMediaUri, messageType);
                 ParseFile file = new ParseFile(fileName, fileBytes);//***** sazdavame ParseFile********
                 messageTosend.put(ParseConstants.KEY_FILE, file);

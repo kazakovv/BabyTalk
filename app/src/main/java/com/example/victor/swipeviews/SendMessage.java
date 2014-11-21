@@ -9,7 +9,6 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.io.File;
@@ -29,7 +27,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 public class SendMessage extends Activity {
@@ -182,7 +179,7 @@ public class SendMessage extends Activity {
 
         if (resultCode == RESULT_OK) {
 
-            //tuk se obrabotva rezultata ot sendTo activity
+            //tuk se obrabotva rezultata ot sendTo activity (na kogo izprashtame saobshtenieto)
             //Ima problem, zashtoto sled tova preprashta kam kraia na metoda i dava general error message
 
             if (requestCode == ACTIVITY_SEND_TO) {
@@ -205,41 +202,37 @@ public class SendMessage extends Activity {
                 } else {
                     mMediaUri = data.getData();
                 }
+
+
                 if (requestCode == CHOOSE_VIDEO_REQUEST) {
                     //proveriavame dali file size > 10MB
-                    int fileSize = 0;
-                    InputStream inputStream = null;
-                    try {
-                        //potvariame izbranoto video i proveriavame kolko e goliamo
-                        inputStream = getContentResolver().openInputStream(mMediaUri);
-                        fileSize = inputStream.available();
 
-                    } catch (Exception e) {
-                        Toast.makeText(SendMessage.this, R.string.error_video_cannot_be_added, Toast.LENGTH_LONG).show();
-                        return;
-                    } finally {
-                        try {
-                            inputStream.close();
-
-                        } catch (IOException e) {
-                            //blank
-                        }
-                    }
-                    if (fileSize > FILE_SIZE_LIMIT) {
+                    if (checkFileSizeExceedsLimit(FILE_SIZE_LIMIT) == true) {
                         Toast.makeText(SendMessage.this, R.string.error_file_too_large, Toast.LENGTH_LONG).show();
                         mMediaUri = null;
                         return; //prekratiavame metoda tuk.
                     }
 
-                    //createThumbnail(requestCode);
                 }
             } else {
+
                 //dobaviame snimkata ili videoto kam galeriata
                 //tova e v sluchaite v koito sme snimali neshto
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
-                mediaScanIntent.setData(mMediaUri);
-                sendBroadcast(mediaScanIntent); //broadcast intent
 
+                //proveriavame dali file size > limit
+
+                if (checkFileSizeExceedsLimit(FILE_SIZE_LIMIT) == true) {
+                    Toast.makeText(SendMessage.this, R.string.error_file_too_large, Toast.LENGTH_LONG).show();
+                    mMediaUri = null;
+                    return; //prekratiavame metoda tuk.
+                } else {
+                    //dobaviame snimkata ili videoto kam galeriata
+
+
+                    Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); //broadcast intent
+                    mediaScanIntent.setData(mMediaUri);
+                    sendBroadcast(mediaScanIntent); //broadcast intent
+                }
 
             }
 
@@ -270,11 +263,44 @@ public class SendMessage extends Activity {
 
     }
 
+   protected boolean checkFileSizeExceedsLimit(int fileSizeLimit) {
+       int fileSize = 0;
+       InputStream inputStream = null;
+       boolean fileSizeExceedsLimit = true;
+
+       try {
+           //potvariame izbranoto video i proveriavame kolko e goliamo
+           inputStream = getContentResolver().openInputStream(mMediaUri);
+           fileSize = inputStream.available();
+
+           if (fileSize > fileSizeLimit) {
+                fileSizeExceedsLimit = true;
+           } else {
+                fileSizeExceedsLimit = false;
+           }
+
+       } catch (Exception e) {
+           Toast.makeText(SendMessage.this, R.string.error_selected_file, Toast.LENGTH_LONG).show();
+
+
+       } finally {
+           try {
+               inputStream.close();
+
+           } catch (IOException e) {
+               //blank
+           }
+       }
+
+
+       return fileSizeExceedsLimit;
+   }
+
     protected void createThumbnail(int requestCode) {
         //create a thumbnail preview of the image/movie that was selected
 
         Bitmap bitmap = null;
-        Bitmap thumbnail = null;
+        Bitmap thumbnail;
         if(requestCode == CHOOSE_PHOTO_REQUEST || requestCode == TAKE_PHOTO_REQUEST) {
 
             try {

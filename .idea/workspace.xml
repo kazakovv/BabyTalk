@@ -45,6 +45,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79458b40-b9b7-4834-b5ef-14c634051c50" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SwipeViews.iws" />
@@ -68,10 +69,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MessageAdapter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MessageAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MessageAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="990">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="990">
               <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
               <folding />
             </state>
@@ -100,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1215" max-vertical-offset="3255">
-              <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5442177" vertical-offset="360" max-vertical-offset="3255">
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="e#2676#2699#0" expanded="true" />
                 <element signature="e#2776#2799#0" expanded="true" />
@@ -114,6 +115,16 @@
                 <element signature="e#7491#7519#0" expanded="true" />
                 <element signature="e#7687#7713#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.54902" vertical-offset="197" max-vertical-offset="1245">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -871,7 +882,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/BabyTalkApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SignUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/SendTo.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_image.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_movie.xml" />
@@ -887,6 +897,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/ViewImageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/FragmentChat.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MessageAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -1036,6 +1047,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwipeViews" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BabyTalk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1448,7 +1489,11 @@
       <created>1416526143019</created>
       <updated>1416526143020</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="bugs fixed send receive adapter">
+      <created>1416526405376</created>
+      <updated>1416526405376</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1551,7 +1596,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="All sorted out, sending and receiving pic and video files" />
     <MESSAGE value="Login Sorted, calendar icon appears depending whether male or female" />
     <MESSAGE value="menu reorganized, sex dialog box working" />
     <MESSAGE value="Menu reorganized" />
@@ -1576,7 +1620,8 @@
     <MESSAGE value="receiving and sending images and video working" />
     <MESSAGE value="push notifications optimized" />
     <MESSAGE value="push working, sending receiving bugs fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="push working, sending receiving bugs fixed" />
+    <MESSAGE value="bugs fixed send receive adapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugs fixed send receive adapter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1982,14 +2027,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2444987" vertical-offset="0" max-vertical-offset="1411">
-          <caret line="54" column="42" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/EditFriendsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.94107145" vertical-offset="0" max-vertical-offset="1955">
@@ -2120,22 +2157,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1215" max-vertical-offset="3255">
-          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding>
-            <element signature="e#2676#2699#0" expanded="true" />
-            <element signature="e#2776#2799#0" expanded="true" />
-            <element signature="e#4237#4276#0" expanded="true" />
-            <element signature="e#6541#6580#0" expanded="true" />
-            <element signature="e#6687#6717#0" expanded="true" />
-            <element signature="e#7491#7519#0" expanded="true" />
-            <element signature="e#7687#7713#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.2943444" vertical-offset="0" max-vertical-offset="1980">
@@ -2249,9 +2270,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/MessageAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6666666" vertical-offset="0" max-vertical-offset="990">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="990">
           <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.54902" vertical-offset="197" max-vertical-offset="1245">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/victor/swipeviews/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5442177" vertical-offset="360" max-vertical-offset="3255">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding>
+            <element signature="e#2676#2699#0" expanded="true" />
+            <element signature="e#2776#2799#0" expanded="true" />
+            <element signature="e#4237#4276#0" expanded="true" />
+            <element signature="e#6541#6580#0" expanded="true" />
+            <element signature="e#6687#6717#0" expanded="true" />
+            <element signature="e#7491#7519#0" expanded="true" />
+            <element signature="e#7687#7713#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

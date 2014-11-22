@@ -24,6 +24,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.zip.Inflater;
 
 /**
@@ -44,6 +48,11 @@ public class FragmentDays extends Fragment  {
         SharedPreferences savedSettings = getActivity().getSharedPreferences("MYPREFS",0);
         fertileMessage.setText(savedSettings.getString("FertileMessage", ""));
         mainMessage.setText(savedSettings.getString("MainMessage","Welcome! Enter your settings to start using BabyTalk!"));
+
+
+
+
+
         return inflatedView;
 
     }

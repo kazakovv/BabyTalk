@@ -74,5 +74,6 @@
     <string name="title_activity_send_message">SendMessage</string>
     <string name="title_activity_send_to">SendTo</string>
     <string name="title_activity_view_movie">ViewMovieActivity</string>
+    <string name="title_activity_calendar_test">CalendarTest</string>
 
 </resources>
